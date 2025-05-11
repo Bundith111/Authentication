@@ -3,7 +3,7 @@
     class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md mx-auto space-y-6"
     label-placement="top"
   >
-    <h1 class="text-9xl font-semibold text-center text-gray-800">
+    <h1 class="text-4xl font-semibold text-center text-gray-800">
       <n-gradient-text size="32" type="success"> Create Account </n-gradient-text>
     </h1>
     <n-form-item label="Email">
@@ -28,9 +28,7 @@
       Register
     </n-button>
     <div class="text-center text-sm text-blue-600 mt-4">
-      <button class="hover:underline" @click="$emit('switch', 'login')">
-        Already have an account? Login
-      </button>
+      <button class="hover:underline" @click="goToLogin">Already have an account? Login</button>
     </div>
   </n-form>
 </template>
@@ -38,9 +36,12 @@
 <script setup>
 import { ref } from 'vue'
 import { useMessage } from 'naive-ui'
+import { useRouter } from 'vue-router'
+
 const email = ref('')
 const password = ref('')
 const message = useMessage()
+const router = useRouter()
 
 const handleRegister = () => {
   if (!email.value || !password.value) {
@@ -48,7 +49,13 @@ const handleRegister = () => {
   } else {
     localStorage.setItem('user', JSON.stringify({ email: email.value, password: password.value }))
     message.success('Registration successful')
-    setTimeout(() => $emit('switch', 'login'), 1000)
+    setTimeout(() => {
+      router.push('/auth/login')
+    }, 1000)
   }
+}
+
+const goToLogin = () => {
+  router.push('/auth/login')
 }
 </script>

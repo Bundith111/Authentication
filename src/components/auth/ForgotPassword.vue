@@ -3,7 +3,7 @@
     class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md mx-auto space-y-6"
     label-placement="top"
   >
-    <h1 class="text-9xl font-semibold text-center text-gray-800">
+    <h1 class="text-4xl font-semibold text-center text-gray-800">
       <n-gradient-text size="32" type="success"> Reset Password </n-gradient-text>
     </h1>
     <br />
@@ -46,7 +46,7 @@
       Reset Password
     </n-button>
     <div class="text-center text-sm text-blue-600 mt-4">
-      <button class="hover:underline" @click="$emit('switch', 'login')">Back to Login</button>
+      <button class="hover:underline" @click="goBackToLogin">Back to Login</button>
     </div>
   </n-form>
 </template>
@@ -54,11 +54,14 @@
 <script setup>
 import { ref } from 'vue'
 import { useMessage } from 'naive-ui'
+import { useRouter } from 'vue-router'
+
 const email = ref('')
-const code = ref('')
 const codeInput = ref('')
 const newPassword = ref('')
+const code = ref('')
 const message = useMessage()
+const router = useRouter()
 
 const sendCode = () => {
   code.value = Math.floor(100000 + Math.random() * 900000).toString()
@@ -67,12 +70,14 @@ const sendCode = () => {
 
 const resetPassword = () => {
   if (codeInput.value === code.value && newPassword.value) {
-    const user = JSON.parse(localStorage.getItem('user') || '{}')
-    localStorage.setItem('user', JSON.stringify({ email: user.email, password: newPassword.value }))
     message.success('Password reset successful')
-    setTimeout(() => $emit('switch', 'login'), 1000)
+    setTimeout(() => router.push('/auth/login'), 1000)
   } else {
     message.error('Invalid code or missing new password')
   }
+}
+
+const goBackToLogin = () => {
+  router.push('/auth/login')
 }
 </script>

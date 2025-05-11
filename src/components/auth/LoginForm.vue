@@ -14,7 +14,7 @@
         v-model:value="password"
         type="password"
         show-password-on="click"
-        placeholder="Enter your password"
+        placeholder="Your password"
         class="w-full"
       />
     </n-form-item>
@@ -22,14 +22,15 @@
       type="primary"
       block
       size="large"
-      class="!bg-blue-600 hover:!bg-blue-700 transition-all"
+      class="!bg-green-600 hover:!bg-green-700 transition-all"
       @click="handleLogin"
     >
       Login
     </n-button>
-    <div class="flex justify-between text-sm text-blue-600 mt-4">
-      <button class="hover:underline" @click="$emit('switch', 'forgot')">Forgot Password?</button>
-      <button class="hover:underline" @click="$emit('switch', 'register')">Register</button>
+    <div class="text-center text-sm text-blue-600 mt-4">
+      <button class="hover:underline" @click="goToRegister">Don't have an account? Register</button>
+      <br />
+      <button class="hover:underline" @click="goToForgotPassword">Forgot Password?</button>
     </div>
   </n-form>
 </template>
@@ -37,20 +38,31 @@
 <script setup>
 import { ref } from 'vue'
 import { useMessage } from 'naive-ui'
+import { useRouter } from 'vue-router'
+
 const email = ref('')
 const password = ref('')
 const message = useMessage()
+const router = useRouter()
 
 const handleLogin = () => {
-  const savedUser = JSON.parse(localStorage.getItem('user') || '{}')
   if (!email.value || !password.value) {
     message.error('Please fill in all fields')
-  } else if (email.value === savedUser.email && password.value === savedUser.password) {
-    message.success('Login Successful')
-    $emit('switch', 'success')
   } else {
-    message.error('Invalid credentials')
-    $emit('switch', 'forgot')
+    localStorage.setItem('user', JSON.stringify({ email: email.value, password: password.value }))
+    message.success('Login successful')
+
+    setTimeout(() => {
+      router.push('/dashboard')
+    }, 1000)
   }
+}
+
+const goToRegister = () => {
+  router.push('/auth/register')
+}
+
+const goToForgotPassword = () => {
+  router.push('/auth/forgot-password')
 }
 </script>
