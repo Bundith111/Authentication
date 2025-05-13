@@ -3,10 +3,9 @@
     class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md mx-auto space-y-6"
     label-placement="top"
   >
-    <h1 class="text-4xl font-semibold text-center text-gray-800">
+    <h1 class="text-9xl font-semibold text-center text-gray-800">
       <n-gradient-text size="32" type="success"> Reset Password </n-gradient-text>
     </h1>
-    <br />
     <div class="flex items-center gap-2 w-full">
       <n-input v-model:value="email" placeholder="Enter your email" class="flex-1" />
       <n-button
@@ -19,7 +18,6 @@
         Send Code
       </n-button>
     </div>
-    <br />
     <n-form-item label="Verification Code">
       <n-input
         v-model:value="codeInput"
@@ -59,24 +57,32 @@ import { useRouter } from 'vue-router'
 const email = ref('')
 const codeInput = ref('')
 const newPassword = ref('')
-const code = ref('')
+const code = ref('') // For storing the verification code
 const message = useMessage()
 const router = useRouter()
 
+// Function to simulate sending a verification code
 const sendCode = () => {
   code.value = Math.floor(100000 + Math.random() * 900000).toString()
   message.info(`Code sent: ${code.value}`)
 }
 
+// Function to handle password reset
 const resetPassword = () => {
+  const storedUser = JSON.parse(localStorage.getItem('user') || '{}')
   if (codeInput.value === code.value && newPassword.value) {
+    storedUser.password = newPassword.value
+    localStorage.setItem('user', JSON.stringify(storedUser)) // Update the password in localStorage
     message.success('Password reset successful')
-    setTimeout(() => router.push('/auth/login'), 1000)
+    setTimeout(() => {
+      router.push('/auth/login') // Redirect to login page after password reset
+    }, 1000)
   } else {
     message.error('Invalid code or missing new password')
   }
 }
 
+// Function to navigate back to the login page
 const goBackToLogin = () => {
   router.push('/auth/login')
 }

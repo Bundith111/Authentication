@@ -3,7 +3,7 @@
     class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md mx-auto space-y-6"
     label-placement="top"
   >
-    <h1 class="text-4xl font-semibold text-center text-gray-800">
+    <h1 class="text-9xl font-semibold text-center text-gray-800">
       <n-gradient-text size="32" type="success"> Create Account </n-gradient-text>
     </h1>
     <n-form-item label="Email">
@@ -47,14 +47,16 @@ const handleRegister = () => {
   if (!email.value || !password.value) {
     message.error('Please fill in all fields')
   } else {
-    localStorage.setItem('user', JSON.stringify({ email: email.value, password: password.value }))
+    const newUser = { email: email.value, password: password.value }
+    localStorage.setItem('user', JSON.stringify(newUser)) // Save the user to localStorage
     message.success('Registration successful')
     setTimeout(() => {
-      router.push('/auth/login')
+      router.push('/auth/login') // Redirect to login page after registration
     }, 1000)
   }
 }
 
+// Navigate to Login page
 const goToLogin = () => {
   router.push('/auth/login')
 }

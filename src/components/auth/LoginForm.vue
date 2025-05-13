@@ -46,22 +46,25 @@ const message = useMessage()
 const router = useRouter()
 
 const handleLogin = () => {
-  if (!email.value || !password.value) {
-    message.error('Please fill in all fields')
-  } else {
-    localStorage.setItem('user', JSON.stringify({ email: email.value, password: password.value }))
-    message.success('Login successful')
+  const storedUser = JSON.parse(localStorage.getItem('user') || '{}')
 
-    setTimeout(() => {
-      router.push('/dashboard')
-    }, 1000)
+  if (!storedUser || storedUser.email !== email.value || storedUser.password !== password.value) {
+    message.error('Invalid credentials. Please check your email and password.')
+    return // Just show the error
   }
+
+  message.success('Login successful')
+  setTimeout(() => {
+    router.push('/dashboard') // Redirect to dashboard on successful login
+  }, 1000)
 }
 
+// Navigate to Register page
 const goToRegister = () => {
   router.push('/auth/register')
 }
 
+// Navigate to Forgot Password page
 const goToForgotPassword = () => {
   router.push('/auth/forgot-password')
 }
