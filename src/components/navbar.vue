@@ -12,7 +12,7 @@
           <router-link to="/users" class="block">Users</router-link>
         </li>
         <li class="p-4 hover:bg-gray-700">
-          <router-link to="/settings" class="block">Settings</router-link>
+          <router-link to="/settings" class="block">Logout</router-link>
         </li>
       </ul>
     </nav>
