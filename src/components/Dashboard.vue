@@ -1,9 +1,9 @@
 
 <template>
-  <div class="dashboard-container">
+  <div class="dashboard-container"><br><br>
   <Navbar />
   <div class="dashboard">
-    <p class="uppercase text-center text-green-600 m-8 text-4xl">Welcome to your Dashboard!</p>
+    <p class="uppercase text-center text-green-600 text-4xl h-[80px] ">Welcome to your Dashboard!</p>
     <div class="text-center justify-center"><br>
       <p class="text-center text-3xl bg-blue-300">Login History</p><hr>
       <table class="w-full shadow-md rounded-b overflow-hidden table-fixed mt-4">
@@ -76,7 +76,7 @@ const loginHistory = [
 
 <style scoped>
 .dashboard-container{
-  padding-bottom: 300px;
   margin-left: 200px;
 }
+
 </style>
