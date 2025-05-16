@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar fixed top-0 left-0 h-screen w-64 bg-blue-800 text-black">
+  <div class="sidebar fixed top-0 left-0 h-screen w-64 bg-blue-800 text-white">
     <div class="p-4 flex items-center justify-center">
       <h1 class="text-2xl font-semibold">My App</h1>
     </div>
@@ -12,7 +12,7 @@
           <router-link to="/users" class="block">Users</router-link>
         </li>
         <li class="p-4 hover:bg-gray-700">
-          <router-link to="/settings" class="block">Logout</router-link>
+          <router-link to="/logout" class="block">Logout</router-link>
         </li>
       </ul>
     </nav>
@@ -25,12 +25,14 @@
 <style scoped>
 .sidebar {
   transition: width 0.3s ease-in-out;
-  width: 64px;
+  width: 100px;
   overflow-x: hidden;
+  background-color: #333;
+  color: white; 
 }
 
 .sidebar:hover {
-  width: 256px;
+  width: 200px;
 }
 
 .sidebar .p-4 {
@@ -56,5 +58,17 @@
 
 .sidebar li a:hover {
   background-color: rgba(255, 255, 255, 0.1); 
+}
+.sidebar li:hover {
+  background-color: rgba(255, 255, 255, 0.1); 
+}
+.sidebar li.active {
+  background-color: rgba(255, 255, 255, 0.2); 
+}
+.sidebar li.active a {
+  color: #000000; 
+}
+.sidebar li.active:hover {
+  background-color: rgba(255, 255, 255, 0.2); 
 }
 </style>
