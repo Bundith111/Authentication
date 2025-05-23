@@ -1,6 +1,6 @@
 <template>
     <div>
-        
+        <h1>Slideshow</h1>
     </div>
 </template>
 <script>

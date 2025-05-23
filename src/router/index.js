@@ -3,7 +3,7 @@ import LoginForm from '../components/auth/LoginForm.vue'
 import RegisterForm from '../components/auth/RegisterForm.vue'
 import ForgotPassword from '../components/auth/ForgotPassword.vue'
 import Dashboard from '../components/Dashboard.vue'
-import EnrollPage from '@/components/EnrollPage.vue'
+import EnrollPage from '../components/EnrollPage.vue'
 
 const routes = [
   {
