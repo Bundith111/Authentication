@@ -25,5 +25,18 @@
     "tailwindcss": "^4.1.6",
     "vite": "^6.2.4",
     "vite-plugin-vue-devtools": "^7.7.2"
-  }
+  },
+  "description": "<<<<<<< HEAD # my-project",
+  "main": "postcss.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bundith111/Authentication.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bundith111/Authentication/issues"
+  },
+  "homepage": "https://github.com/Bundith111/Authentication#readme"
 }

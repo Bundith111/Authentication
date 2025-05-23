@@ -3,8 +3,14 @@ import LoginForm from '../components/auth/LoginForm.vue'
 import RegisterForm from '../components/auth/RegisterForm.vue'
 import ForgotPassword from '../components/auth/ForgotPassword.vue'
 import Dashboard from '../components/Dashboard.vue'
+import EnrollPage from '@/components/EnrollPage.vue'
 
 const routes = [
+  {
+    path: '/enroll',
+    name: 'enroll',
+    component: EnrollPage,
+  },
   {
     path: '/',
     redirect: '/auth/login',
