@@ -1,12 +1,10 @@
 <template>
     <div>
-<h1>Hello</h1>
 <Navbar />
-<Hero />
 <SlideShow />
+<Hero />
 <Footer />
-
-    </div>
+   </div>
 </template>
 <script>
 import Navbar from './UI/Navbar.vue';
