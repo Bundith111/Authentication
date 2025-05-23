@@ -2,7 +2,6 @@
   <nav class="Navbar bg-blue-500 p-4 text-white">
     <div class="container">
       <div class="flex">
-        <img src="/img/meow.jpg" alt="Logo" class="logo" />
         <span>Meow Company</span>
       </div>
       <div>
@@ -19,7 +18,7 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style scoped>
