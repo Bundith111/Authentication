@@ -5,9 +5,14 @@ import ForgotPassword from '../components/auth/ForgotPassword.vue'
 import Dashboard from '../components/Dashboard.vue'
 import EnrollPage from '../components/EnrollPage.vue'
 import Staff from '@/components/Staff.vue'
-
-
+import GRegisterForm from '@/components/auth/GRegisterForm.vue'
+import StaffR from '@/components/auth/StaffR.vue'
 const routes = [
+  {
+    path: '/auth/login/gregisterForm',
+    name: 'gregisterForm',
+    component: GRegisterForm,
+  },
   {
     path: '/enroll',
     name: 'enroll',
@@ -37,10 +42,15 @@ const routes = [
     name: 'dashboard',
     component: Dashboard,
   },
-   {
+  {
     path: '/staff',
     name: 'staff',
     component: Staff,
+  },
+  {
+    path: '/auth/staffregister',
+    name: 'staffregister',
+    component: StaffR,
   },
 ]
 
