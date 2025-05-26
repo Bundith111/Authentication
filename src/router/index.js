@@ -7,6 +7,7 @@ import EnrollPage from '../components/EnrollPage.vue'
 import Staff from '@/components/Staff.vue'
 import GRegisterForm from '@/components/auth/GRegisterForm.vue'
 import StaffR from '@/components/auth/StaffR.vue'
+import Teacher from '@/components/Teacher.vue'
 const routes = [
   {
     path: '/auth/login/gregisterForm',
@@ -51,6 +52,11 @@ const routes = [
     path: '/auth/staffregister',
     name: 'staffregister',
     component: StaffR,
+  },
+  {
+    path: '/teacher',
+    name: 'teacher',
+    component: Teacher,
   },
 ]
 
