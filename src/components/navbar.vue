@@ -14,8 +14,14 @@
         <li class="p-4 hover:bg-gray-700">
           <router-link to="/dashboard" class="block">Dashboard</router-link>
         </li>
-        <li class="p-4 hover:bg-blue-700">
-          <router-link to="/users" class="block">Users</router-link>
+        <li class="p-4 hover:bg-gray-700">
+          <router-link to="/staff" class="block">Staff</router-link>
+        </li>
+        <li class="p-4 hover:bg-gray-700">
+          <router-link to="/teacher" class="block">Teacher</router-link>
+        </li>
+        <li class="p-4 hover:bg-gray-700">
+          <router-link to="/guardian" class="block">Guardian</router-link>
         </li>
         <li class="p-4 hover:bg-gray-700">
           <router-link to="/auth/login" class="block">Logout</router-link>

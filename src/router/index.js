@@ -4,6 +4,8 @@ import RegisterForm from '../components/auth/RegisterForm.vue'
 import ForgotPassword from '../components/auth/ForgotPassword.vue'
 import Dashboard from '../components/Dashboard.vue'
 import EnrollPage from '../components/EnrollPage.vue'
+import Staff from '@/components/Staff.vue'
+
 
 const routes = [
   {
@@ -34,6 +36,11 @@ const routes = [
     path: '/dashboard',
     name: 'dashboard',
     component: Dashboard,
+  },
+   {
+    path: '/staff',
+    name: 'staff',
+    component: Staff,
   },
 ]
 
