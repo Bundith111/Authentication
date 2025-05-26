@@ -4,8 +4,14 @@ import RegisterForm from '../components/auth/RegisterForm.vue'
 import ForgotPassword from '../components/auth/ForgotPassword.vue'
 import Dashboard from '../components/Dashboard.vue'
 import EnrollPage from '../components/EnrollPage.vue'
+import GRegisterForm from '@/components/auth/GRegisterForm.vue'
 
 const routes = [
+  {
+    path: '/auth/login/gregisterForm',
+    name: 'gregisterForm',
+    component: GRegisterForm,
+  },
   {
     path: '/enroll',
     name: 'enroll',

@@ -10,7 +10,7 @@
           <li><a href="#" class="hover:text-blue-300">About</a></li>
           <li><a href="#" class="hover:text-blue-300">Services</a></li>
           <li><a href="#" class="hover:text-blue-300">Contact</a></li>
-          <li><a href="#" class="hover:text-blue-300">Login</a></li>
+          <li><router-link to="/auth/login/gregisterForm" class="hover:text-blue-300">Login</router-link></li>
         </ul>
       </div>
     </div>
