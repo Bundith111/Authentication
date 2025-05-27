@@ -113,7 +113,7 @@
         <input type="file" id="documentUpload" @change="handleFileUpload">
       </div>
 
-      <button type="submit">Apply</button>
+      <button type="submit">submit</button>
     </form>
     <p v-if="error" class="error-message">{{ error }}</p>
   </div>
