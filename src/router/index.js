@@ -9,6 +9,7 @@ import GRegisterForm from '@/components/auth/GRegisterForm.vue'
 import StaffR from '@/components/auth/StaffR.vue'
 import Teacher from '@/components/Teacher.vue'
 import verify from '@/components/auth/verify.vue'
+import guardian from '@/components/UI/guardian.vue'
 const routes = [
   {
     path: '/auth/login/gregisterForm',
@@ -63,6 +64,11 @@ const routes = [
     path: '/auth/verify',
     name: 'verify',
     component: verify,
+  },
+  {
+    path: '/guardian',
+    name: 'guardian',
+    component: guardian,
   },
 ]
 

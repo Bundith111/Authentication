@@ -13,7 +13,7 @@
         Application Submitted Successfully!
       </div>
       <p class="text-gray-700 text-base text-center mb-4">
-        Your application is being reviewed.
+        Y our application is being reviewed.
       </p>
       <p class="text-gray-700 text-base text-center">
         You will be notified via email or phone number.
