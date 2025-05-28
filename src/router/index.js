@@ -50,10 +50,10 @@ const routes = [
     name: 'staff',
     component: Staff,
   },
-  {
+    {
     path: '/auth/staffregister',
-    name: 'staffregister',
-    component: StaffR,
+    name: 'StaffRegister',
+    component: StaffR
   },
   {
     path: '/teacher',

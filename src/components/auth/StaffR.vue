@@ -97,7 +97,7 @@
           <n-input v-model:value="studentname" placeholder="Student Name" class="mb-4 w-full " /><br>
           <n-input v-model:value="paymentDate" placeholder="Payment Date" class="mb-4 w-full text-xl" /><br>
           <n-input v-model:value="amountpaid" placeholder="Amount Paid" class="mb-4 w-full text-xl" /><br>
-          <n-input v-model:value="paymentmethod" placeholder="Payment Method" class="mb-4 w-full " /><br>
+          <n-select v-model:value="selectedPaymentMethodVerifying" :options="verifyingpaymentmethods" placeholder="Payment Method" class="mb-4 w-full"/>
           <n-input v-model:value="transactionid" placeholder="Transaction ID" class="mb-4 w-full " /><br>
           <!-- 2 this get data from issuing invoice -->
           <!-- <n-input v-model:value="paidby" placeholder="Paid By" class="mb-4 w-full " /><br>
@@ -176,12 +176,130 @@
         
 
 <script setup>
-import { positionProp } from 'naive-ui/es/layout/src/interface';
+import { NButton, NInput, NSelect } from 'naive-ui'
 import Navbar from '../navbar.vue'
 import { ref } from 'vue'
 
-
+const selectedDivision = ref(null)
+const selectedPosition = ref(null)
+const selectedDriver = ref(null)
+const selectedStudent = ref(null)
+const selectedBus = ref(null)
+const selectedGenderstd = ref(null)
+const selectedGuardianstd = ref(null)
+const selectedClassstd = ref(null)
+const selectedStatusstd = ref(null)
 const selectedUser = ref(null)
+const selectedinvoiceStudent = ref(null)
+const selectedInvoiceType = ref(null)
+const invoiceselectedStatus = ref(null)
+const selectedStatusVerifying = ref(null)
+const selectedAuthorizedPerson = ref(null)
+const selectedTeacherRegistrationStaffID = ref(null)
+const selectedTeacherRegistrationClassassignment = ref(null)
+const selectedStaffUserID = ref(null)
+const selectedStaffGender = ref(null)
+const selectedStaffPosition = ref(null)
+const selectedPickupMethodstd = ref(null)
+const userid = ref(null)
+const classname = ref('')
+const eventname = ref('')
+const date = ref('')
+const typeofevent = ref('')
+const descriptionevent = ref('')
+const description = ref('')
+const namedivision = ref('')
+const nameposition = ref('')
+const namepermission = ref('')
+const busname = ref('')
+const licenseplate = ref('')
+const route = ref('')
+const agestd = ref('')
+const dobstd = ref('')
+const specialnotestd = ref('')
+const namestd = ref('')
+const admissiondatestd = ref('')
+const invoiceDescription = ref('')
+const invoiceamount = ref('')
+const invoicedueDate = ref('')
+const receiptid = ref('')
+const invoiceid = ref('')
+const studentname = ref('')
+const paymentDate = ref('')
+const amountpaid = ref('')
+const transactionid = ref('')
+const paidby = ref('')
+const issuedby = ref('')
+const relationshiptoStudent = ref('')
+const nameregisterauthorisedperson = ref('')
+const phonenumberregisterauthorisedperson = ref('')
+const stafffristname = ref('')
+const stafflastname = ref('')
+const stafflage = ref('')
+const staffhiredate = ref('')
+const staffphonenumber = ref('')
+const staffemail = ref('')
+const staffaddress = ref('')
+const staffemploymentstatus = ref('')
+const staffid = ref('')
+const staffstatus = ref('')
+const role = ref('')
+const nameRolecreating = ref('')
+const guardnamerolecreating = ref('')
+const tagrolecreating = ref('')
+const selectedUserAssignmentToRole = ref(null)
+const selectedRoleAssignmentToRole = ref(null)
+const selectedPaymentMethodVerifying = ref(null)
+
+
+const uploadUrl = 'https://example.com/upload' // Replace with your actual upload URL
+const submitClassroomReport = () => {
+  console.log('Classroom Report Submitted:', classname.value)
+}
+const submitEventReport = () => {
+  console.log('Event Report Submitted:', eventname.value, date.value, typeofevent.value, descriptionevent.value, selectedUser.value)
+}
+const submitDivisionReport = () => {
+  console.log('Division Report Submitted:', namedivision.value, description.value)
+}
+const submitPositionReport = () => {
+  console.log('Position Report Submitted:', nameposition.value, description.value)
+}
+const submitPermissionReport = () => {
+  console.log('Permission Report Submitted:', namepermission.value, description.value, selectedDivision.value, selectedPosition.value)
+}
+const submitBusRegistrationReport = () => {
+  console.log('Bus Registration Report Submitted:', busname.value, licenseplate.value, selectedDriver.value, route.value)
+}
+const submitStudentBusAssignmentReport = () => {
+  console.log('Student Bus Assignment Report Submitted:', selectedStudent.value, selectedBus.value)
+}
+const submitStudentRegistrationReport = () => {
+  console.log('Student Registration Report Submitted:', namestd.value, selectedGenderstd.value, agestd.value, dobstd.value, selectedGuardianstd.value, admissiondatestd.value, specialnotestd.value, selectedClassstd.value, selectedPickupMethodstd.value, selectedStatusstd.value)
+}
+const submitInvoiceReport = () => {
+  console.log('Invoice Report Submitted:', selectedinvoiceStudent.value, selectedInvoiceType.value, invoiceDescription.value, invoiceamount.value, invoicedueDate.value, invoiceselectedStatus.value)
+}
+const submitVerifyingReceiptReport = () => {
+  console.log('Verifying Receipt Report Submitted:', receiptid.value, invoiceid.value, studentname.value, paymentDate.value, amountpaid.value, paymentmethod.value, transactionid.value, selectedStatusVerifying.value)
+}
+const submitRegisterAuthorisedPersonReport = () => {
+  console.log('Register Authorised Person Report Submitted:', nameregisterauthorisedperson.value, phonenumberregisterauthorisedperson.value)
+}
+const submitTeacherRegisterReport = () => {
+  console.log('Teacher Registration Report Submitted:', selectedTeacherRegistrationStaffID.value, role.value, selectedTeacherRegistrationClassassignment.value)
+}
+const submitStaffRegisterReport = () => {
+  console.log('Staff Registration Report Submitted:', selectedStaffUserID.value, stafffristname.value, stafflastname.value, stafflage.value, selectedStaffGender.value, staffhiredate.value, selectedStaffPosition.value, staffphonenumber.value, staffemail.value, staffaddress.value, staffemploymentstatus.value, selectedStaffStatus.value)
+}
+const submitRoleReport = () => {
+  console.log('Role Report Submitted:', nameRolecreating.value, guardnamerolecreating.value, tagrolecreating.value)
+}
+const submitUserRoleAssignment = () => {
+  console.log('User Role Assignment Submitted:', selectedUserAssignmentToRole.value, selectedRoleAssignmentToRole.value)
+}
+
+
 const eventsendtouser = [
   { label: 'Student', value: 'student' },
   { label: 'Guardian', value: 'guardian' },
@@ -262,7 +380,7 @@ const verifyingstatus = [
   { label: 'Verified', value: 'verified' },
   { label: 'Unverified', value: 'unverified' },
 ]
-conststudents = [
+const students = [
   { label: 'Student A', value: 'studentA' },
   { label: 'Student B', value: 'studentB' },
   { label: 'Student C', value: 'studentC' },
@@ -292,8 +410,11 @@ const roleusers = [
   { label: 'Role B', value: 'roleB' },
   { label: 'Role C', value: 'roleC' },
 ]
-
-
+const verifyingpaymentmethods = [
+  { label: 'Cash', value: 'cash' },
+  { label: 'Credit Card', value: 'creditCard' },
+  { label: 'Bank Transfer', value: 'bankTransfer' },
+]
 const handleFileUpload = (event) => {
   const file = event.target.files[0];
   if (!file) {
