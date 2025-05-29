@@ -26,21 +26,21 @@
           <h2 class=" font-bold mb-4  h-[30px] text-center"> Creating Division</h2>
           <div class=" rounded shadow ">
           <n-input v-model:value="namedivision" placeholder="Name" class="mb-4 w-full  text-xl" /><br>
-          <n-input type="textarea" v-model:value="description" placeholder="Description" class="mb-4 w-full "/><br>
+          <n-input type="textarea" v-model:value="descriptiondivision" placeholder="Description" class="mb-4 w-full "/><br>
           <n-button type="primary" @click="submitDivisionReport">Create</n-button>
           </div><br>
           <!-- creating position -->
           <h2 class=" font-bold mb-4  h-[30px] text-center"> Creating Position</h2>
           <div class=" rounded shadow ">
           <n-input v-model:value="nameposition" placeholder="Name" class="mb-4 w-full  text-xl" /><br>
-          <n-input type="textarea" v-model:value="description" placeholder="Description" class="mb-4 w-full "/><br>
+          <n-input type="textarea" v-model:value="descriptionposition" placeholder="Description" class="mb-4 w-full "/><br>
           <n-button type="primary" @click="submitPositionReport">Create</n-button>
           </div><br>
           <!-- creating permission -->
           <h2 class=" font-bold mb-4  h-[30px] text-center"> Creating Permission</h2>
           <div class=" rounded shadow ">
           <n-input v-model:value="namepermission" placeholder="Name" class="mb-4 w-full  text-xl" /><br>
-          <n-input type="textarea" v-model:value="description" placeholder="Description" class="mb-4 w-full "/><br>
+          <n-input type="textarea" v-model:value="descriptionpermission" placeholder="Description" class="mb-4 w-full "/><br>
           <n-select v-model:value="selectedDivision" :options="divisions" placeholder="Under Division" class="mb-4 w-full"/>
           <n-select v-model:value="selectedPosition" :options="positions" placeholder="Under Position" class="mb-4 w-full"/>
           <n-button type="primary" @click="submitPermissionReport">Create</n-button>
@@ -69,14 +69,16 @@
           <n-input v-model:value="agestd" placeholder="Age" class="mb-4 w-full text-xl" /><br>       
           <n-input v-model:value="dobstd" type="date" format="MM/dd/yyyy" value-format="yyyy-MM-dd" placeholder="" class="mb-4 w-full text-xl"/>
           <n-select v-model:value="selectedGuardianstd" :options="guardianstd" placeholder="Select Guardian" class="mb-4 w-full"/>
-          <n-input v-model:value="admissiondatestd" placeholder="Admission Date" class="mb-4 w-full  text-xl" /><br>
+          <n-input v-model:value="admissiondatestd" type="date" format="MM/dd/yyyy" value-format="yyyy-MM-dd" placeholder="" class="mb-4 w-full text-xl"/>
           <n-input v-model:value="specialnotestd" placeholder="Special Note" class="mb-4 w-full  text-xl" /><br>
           <n-select v-model:value="selectedClassstd" :options="classstd" placeholder="Select Class" class="mb-4 w-full"/>
           <n-select v-model:value="selectedPickupMethodstd" :options="pickupmethods" placeholder="Pickup Method" class="mb-4 w-full"/>
           <n-select v-model:value="selectedStatusstd" :options="statusstd" placeholder="Status" class="mb-4 w-full"/><br>
-          <label for="documentUpload" class="block mb-2 text-sm font-medium ">Profile Picture:</label>
-          <input type="file" id="documentUpload" @change="handleFileUpload" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" >
-           <n-button type="primary" @click="submitStudentRegistrationReport">Create</n-button>
+          <label for="profileStudent" class="block mb-2 text-sm font-medium text-black-700">Profile Picture:</label>
+          <input type="file" id="profileStudent" accept="image/*,.pdf,.doc,.docx" @change="handleStudentUpload"  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" />
+          <p class="text-sm font-medium text-black-700 mb-1">Image Preview:</p>
+          <img v-if="previewStudent" :src="previewStudent" alt="Student Preview" class="max-w-xs " />
+          <n-button type="primary" @click="submitStudentRegistrationReport">Create</n-button>
           </div><br>
           <!-- issuing invoice -->
           <h2 class=" font-bold mb-4  h-[30px] text-center"> Issuing Invoice</h2>
@@ -110,9 +112,11 @@
           <div class=" rounded shadow ">
           <n-input v-model:value="nameregisterauthorisedperson" placeholder="Name" class="mb-4 w-full  text-xl" /><br>
           <n-input v-model:value="phonenumberregisterauthorisedperson" placeholder="Phone Number" class="mb-4 w-full  text-xl" /><br>
-          <label for="documentUpload" class="block mb-2 text-sm font-medium ">Profile Picture:</label>
-          <input type="file" id="documentUpload" @change="handleFileUpload" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" >
-           <n-button type="primary" @click="submitRegisterAuthorisedPersonReport">Register</n-button>
+          <label for="profileAuthorised" class="block mb-2 text-sm font-medium text-black-700">Profile Picture:</label>
+          <input type="file" id="profileAuthorised" accept="image/*,.pdf,.doc,.docx" @change="handleAuthorisedUpload" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" />
+          <p class="text-sm font-medium text-black-700 mb-1">Image Preview:</p>
+          <img v-if="previewAuthorised" :src="previewAuthorised" alt="Authorised Preview" class="max-w-xs " />
+          <n-button type="primary" @click="submitRegisterAuthorisedPersonReport">Register</n-button>
           </div><br>
           <!-- Authorized Person Assignment to Student-->
           <h2 class=" font-bold mb-4  h-[30px] text-center"> Authorized Person Assignment to Student</h2>
@@ -128,11 +132,13 @@
           <n-select v-model:value="selectedTeacherRegistrationStaffID" :options="staffidteacher" placeholder="Existing Staffs" class="mb-4 w-full"/>
           <n-input v-model:value="role" placeholder="Role in Class" class="mb-4 w-full  text-xl" /><br>
           <n-select v-model:value="selectedTeacherRegistrationClassassignment" :options="classassignmentteacher" placeholder="Existing Classes" class="mb-4 w-full"/>
-          <label for="Qualifications" class="block mb-2 text-sm font-medium ">Qualifications:</label>
-          <input type="file" id="documentUpload" @change="handleFileUpload" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" >
-           <n-button type="primary" @click="submitTeacherRegisterReport">Register</n-button>
+          <label for="qualificationsTeacher" class="block mb-2 text-sm font-medium text-black-700">Qualifications:</label>
+          <input type="file" id="qualificationsTeacher" accept="image/*,.pdf,.doc,.docx" @change="handleTeacherUpload" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" />
+          <p class="text-sm font-medium text-black-700 mb-1">Image Preview:</p>
+          <img v-if="previewTeacher" :src="previewTeacher" alt="Teacher Preview" class="max-w-xs " />
+          <n-button type="primary" @click="submitTeacherRegisterReport">Register</n-button>
           </div><br>
-            <!-- Staff Registration-->
+          <!-- Staff Registration-->
           <h2 class=" font-bold mb-4  h-[30px] text-center">Staff Registration </h2>
           <div class=" rounded shadow ">
           <n-select v-model:value="selectedStaffUserID" :options="userid" placeholder="UserID" class="mb-4 w-full"/>
@@ -147,8 +153,10 @@
           <n-input v-model:value="staffaddress" placeholder="Address" class="mb-4 w-full  text-xl" /><br>
           <n-input v-model:value="staffemploymentstatus" placeholder="Employment Status" class="mb-4 w-full  text-xl" /><br>
           <n-select v-model:value="selectedStaffStatus" :options="status" placeholder="Status" class="mb-4 w-full"/>
-          <label for="Qualifications" class="block mb-2 text-sm font-medium ">Qualifications:</label>
-          <input type="file" id="documentUpload" @change="handleFileUpload" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" >
+          <label for="profilePictureStaff" class="block mb-2 text-sm font-medium text-black-700">Profile Picture:</label>
+          <input type="file" id="profilePictureStaff" accept="image/*,.pdf,.doc,.docx" @change="handleProfilePictureStaffUpload" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" />
+          <p class="text-sm font-medium text-black-700 mb-1">Image Preview:</p>
+          <img v-if="previewStaff" :src="previewStaff" alt="Staff Preview" class="max-w-xs " />
           <n-button type="primary" @click="submitStaffRegisterReport">Create</n-button>
           </div><br>
           <!--Role creating -->
@@ -172,13 +180,13 @@
   </div>
 </div>
 </template>
-         
-        
+
 
 <script setup>
 import { NButton, NInput, NSelect } from 'naive-ui'
 import Navbar from '../navbar.vue'
 import { ref } from 'vue'
+
 
 const selectedDivision = ref(null)
 const selectedPosition = ref(null)
@@ -198,17 +206,19 @@ const selectedAuthorizedPerson = ref(null)
 const selectedTeacherRegistrationStaffID = ref(null)
 const selectedTeacherRegistrationClassassignment = ref(null)
 const selectedStaffUserID = ref(null)
-const selectedStaffGender = ref(null)
 const selectedStaffPosition = ref(null)
 const selectedPickupMethodstd = ref(null)
+const selectedStaffGender = ref(null)
+const eventdate = ref('')
 const dobstd = ref(null)
-const userid = ref(null)
 const classname = ref('')
 const eventname = ref('')
-const date = ref('')
 const typeofevent = ref('')
 const descriptionevent = ref('')
-const description = ref('')
+const descriptiondivision = ref('')
+const descriptionposition = ref('')
+const descriptionpermission = ref('')
+const selectedPaymentMethod = ref(null)
 const namedivision = ref('')
 const nameposition = ref('')
 const namepermission = ref('')
@@ -221,7 +231,6 @@ const namestd = ref('')
 const admissiondatestd = ref('')
 const invoiceDescription = ref('')
 const invoiceamount = ref('')
-const invoicedueDate = ref('')
 const receiptid = ref('')
 const invoiceid = ref('')
 const studentname = ref('')
@@ -230,6 +239,9 @@ const amountpaid = ref('')
 const transactionid = ref('')
 const paidby = ref('')
 const issuedby = ref('')
+const paidbyguardian = ref('')
+const issuedbystaff = ref('')
+const invoicedate = ref('')
 const relationshiptoStudent = ref('')
 const nameregisterauthorisedperson = ref('')
 const phonenumberregisterauthorisedperson = ref('')
@@ -252,21 +264,20 @@ const selectedRoleAssignmentToRole = ref(null)
 const selectedPaymentMethodVerifying = ref(null)
 
 
-const uploadUrl = 'https://example.com/upload' // Replace with your actual upload URL
 const submitClassroomReport = () => {
   console.log('Classroom Report Submitted:', classname.value)
 }
 const submitEventReport = () => {
-  console.log('Event Report Submitted:', eventname.value, date.value, typeofevent.value, descriptionevent.value, selectedUser.value)
+  console.log('Event Report Submitted:', eventname.value, eventdate.value, typeofevent.value, descriptionevent.value, selectedUser.value)
 }
 const submitDivisionReport = () => {
-  console.log('Division Report Submitted:', namedivision.value, description.value)
+  console.log('Division Report Submitted:', namedivision.value, descriptiondivision.value)
 }
 const submitPositionReport = () => {
-  console.log('Position Report Submitted:', nameposition.value, description.value)
+  console.log('Position Report Submitted:', nameposition.value, descriptionposition.value)
 }
 const submitPermissionReport = () => {
-  console.log('Permission Report Submitted:', namepermission.value, description.value, selectedDivision.value, selectedPosition.value)
+  console.log('Permission Report Submitted:', namepermission.value, descriptionpermission.value, selectedDivision.value, selectedPosition.value)
 }
 const submitBusRegistrationReport = () => {
   console.log('Bus Registration Report Submitted:', busname.value, licenseplate.value, selectedDriver.value, route.value)
@@ -278,10 +289,10 @@ const submitStudentRegistrationReport = () => {
   console.log('Student Registration Report Submitted:', namestd.value, selectedGenderstd.value, agestd.value, dobstd.value, selectedGuardianstd.value, admissiondatestd.value, specialnotestd.value, selectedClassstd.value, selectedPickupMethodstd.value, selectedStatusstd.value)
 }
 const submitInvoiceReport = () => {
-  console.log('Invoice Report Submitted:', selectedinvoiceStudent.value, selectedInvoiceType.value, invoiceDescription.value, invoiceamount.value, invoicedueDate.value, invoiceselectedStatus.value)
+  console.log('Invoice Report Submitted:', selectedinvoiceStudent.value, selectedInvoiceType.value, invoiceDescription.value, invoiceamount.value, invoicedate.value, invoiceselectedStatus.value)
 }
 const submitVerifyingReceiptReport = () => {
-  console.log('Verifying Receipt Report Submitted:', receiptid.value, invoiceid.value, studentname.value, paymentDate.value, amountpaid.value, paymentmethod.value, transactionid.value, selectedStatusVerifying.value)
+  console.log('Verifying Receipt Report Submitted:', receiptid.value, invoiceid.value, studentname.value, paymentDate.value, amountpaid.value, selectedPaymentMethodVerifying.value, transactionid.value, paidbyguardian.value, issuedbystaff.value, selectedStatusVerifying.value)
 }
 const submitRegisterAuthorisedPersonReport = () => {
   console.log('Register Authorised Person Report Submitted:', nameregisterauthorisedperson.value, phonenumberregisterauthorisedperson.value)
@@ -293,10 +304,10 @@ const submitStaffRegisterReport = () => {
   console.log('Staff Registration Report Submitted:', selectedStaffUserID.value, stafffristname.value, stafflastname.value, stafflage.value, selectedStaffGender.value, staffhiredate.value, selectedStaffPosition.value, staffphonenumber.value, staffemail.value, staffaddress.value, staffemploymentstatus.value, selectedStaffStatus.value)
 }
 const submitRoleReport = () => {
-  console.log('Role Report Submitted:', nameRolecreating.value, guardnamerolecreating.value, tagrolecreating.value)
+  console.log('Role Created:', nameRolecreating.value, guardnamerolecreating.value, tagrolecreating.value)
 }
 const submitUserRoleAssignment = () => {
-  console.log('User Role Assignment Submitted:', selectedUserAssignmentToRole.value, selectedRoleAssignmentToRole.value)
+  console.log('User Assignment to Role Submitted:', selectedUserAssignmentToRole.value, selectedRoleAssignmentToRole.value)
 }
 
 
@@ -376,6 +387,11 @@ const paymentmethod=[
   { label: 'Credit Card', value: 'creditCard' },
   { label: 'Bank Transfer', value: 'bankTransfer' },
 ]
+const gender = [
+  { label: 'Male', value: 'male' },
+  { label: 'Female', value: 'female' },
+  { label: 'Other', value: 'other' },
+]
 const verifyingstatus = [
   { label: 'Verified', value: 'verified' },
   { label: 'Unverified', value: 'unverified' },
@@ -415,13 +431,39 @@ const verifyingpaymentmethods = [
   { label: 'Credit Card', value: 'creditCard' },
   { label: 'Bank Transfer', value: 'bankTransfer' },
 ]
-const handleFileUpload = (event) => {
-  const file = event.target.files[0];
-  if (!file) {
-    console.error('No file selected');
-    return;
+const userid = [
+  { label: 'User A', value: 'userA' },
+  { label: 'User B', value: 'userB' },
+  { label: 'User C', value: 'userC' },
+]
+const selectedStaffStatus = [
+  { label: 'Active', value: 'active' },
+  { label: 'Inactive', value: 'inactive' },
+]
+
+//upload image
+// Separate preview states
+const previewStaff = ref(null)
+const previewTeacher = ref(null)
+const previewAuthorised = ref(null)
+const previewStudent = ref(null)
+// Preview helpers
+function handleFilePreview(file, previewRef) {
+  if (file && file.type.startsWith('image/')) {
+    const reader = new FileReader()
+    reader.onload = () => {
+      previewRef.value = reader.result
+    }
+    reader.readAsDataURL(file)
+  } else {
+    previewRef.value = null
   }
-  console.log(file);
-};
+}
+// Separate handlers
+const handleProfilePictureStaffUpload = (e) => handleFilePreview(e.target.files[0], previewStaff)
+const handleTeacherUpload = (e) => handleFilePreview(e.target.files[0], previewTeacher)
+const handleAuthorisedUpload = (e) => handleFilePreview(e.target.files[0], previewAuthorised)
+const handleStudentUpload = (e) => handleFilePreview(e.target.files[0], previewStudent)
+
 </script>
 
