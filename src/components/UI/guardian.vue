@@ -1,4 +1,5 @@
 <template>
+  <Navbar/>
   <div class="min-h-screen flex items-center justify-center bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
     <div class="relative py-3 sm:max-w-md sm:mx-auto">
       <div class="relative px-4 py-10 bg-white shadow-lg rounded-3xl sm:p-10">
@@ -71,5 +72,5 @@
 </template>
 
 <script setup>
-
+import Navbar from '../navbar.vue'
 </script>

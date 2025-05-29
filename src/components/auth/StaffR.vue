@@ -16,7 +16,7 @@
           <h2 class=" font-bold mb-4  h-[30px] text-center"> Creating Event</h2>
           <div class=" rounded shadow ">
           <n-input v-model:value="eventname" placeholder="Event Name" class="mb-4 w-full  text-xl" /><br>
-          <n-input v-model:value="date" placeholder="Date" class="mb-4 w-full text-xl" /><br>
+          <n-input v-model:value="eventdate" type="date" format="MM/dd/yyyy" value-format="yyyy-MM-dd" placeholder="" class="mb-4 w-full text-xl"/><br>
           <n-input v-model:value="typeofevent" placeholder="Type of Event" class="mb-4 w-full  text-xl" /><br>
           <n-input type="textarea" v-model:value="descriptionevent" placeholder="Description" class="mb-4 w-full "/><br>
           <n-select v-model:value="selectedUser" :options="eventsendtouser" placeholder="Sent To" class="mb-4 w-full"/>
@@ -66,8 +66,8 @@
           <div class=" rounded shadow ">
           <n-input v-model:value="namestd" placeholder="Name" class="mb-4 w-full  text-xl" /><br>
           <n-select v-model:value="selectedGenderstd" :options="genderstd" placeholder="Select Gender" class="mb-4 w-full"/>
-          <n-input v-model:value="agestd" placeholder="Age" class="mb-4 w-full text-xl" /><br>
-          <n-input v-model:value="dobstd" placeholder="Date of Birth" class="mb-4 w-full text-xl" /><br>
+          <n-input v-model:value="agestd" placeholder="Age" class="mb-4 w-full text-xl" /><br>       
+          <n-input v-model:value="dobstd" type="date" format="MM/dd/yyyy" value-format="yyyy-MM-dd" placeholder="" class="mb-4 w-full text-xl"/>
           <n-select v-model:value="selectedGuardianstd" :options="guardianstd" placeholder="Select Guardian" class="mb-4 w-full"/>
           <n-input v-model:value="admissiondatestd" placeholder="Admission Date" class="mb-4 w-full  text-xl" /><br>
           <n-input v-model:value="specialnotestd" placeholder="Special Note" class="mb-4 w-full  text-xl" /><br>
@@ -85,7 +85,7 @@
           <n-select v-model:value="selectedInvoiceType" :options="invoicetypes" placeholder="Invoice Type" class="mb-4 w-full"/>
           <n-input type="textarea" v-model:value="invoiceDescription" placeholder="Description" class="mb-4 w-full "/><br>
           <n-input v-model:value="invoiceamount" placeholder="Amount" class="mb-4 w-full text-xl" /><br>
-          <n-input v-model:value="invoicedueDate" placeholder="Due Date" class="mb-4 w-full text-xl" /><br>
+          <n-input v-model:value="invoicedate" type="date" format="MM/dd/yyyy" value-format="yyyy-MM-dd" placeholder="" class="mb-4 w-full text-xl"/><br>
           <n-select v-model:value="invoiceselectedStatus" :options="invoicestatus" placeholder="Status" class="mb-4 w-full"/>
           <n-button type="primary" @click="submitInvoiceReport">Create</n-button>
           </div><br>
@@ -95,14 +95,14 @@
           <n-input v-model:value="receiptid" placeholder="Receipt ID" class="mb-4 w-full " /><br>
           <n-input v-model:value="invoiceid" placeholder="Invoice ID" class="mb-4 w-full " /><br>
           <n-input v-model:value="studentname" placeholder="Student Name" class="mb-4 w-full " /><br>
-          <n-input v-model:value="paymentDate" placeholder="Payment Date" class="mb-4 w-full text-xl" /><br>
+          <n-input v-model:value="paymentdate" type="date" format="MM/dd/yyyy" value-format="yyyy-MM-dd" placeholder="" class="mb-4 w-full text-xl"/><br>
           <n-input v-model:value="amountpaid" placeholder="Amount Paid" class="mb-4 w-full text-xl" /><br>
           <n-select v-model:value="selectedPaymentMethodVerifying" :options="verifyingpaymentmethods" placeholder="Payment Method" class="mb-4 w-full"/>
           <n-input v-model:value="transactionid" placeholder="Transaction ID" class="mb-4 w-full " /><br>
           <!-- 2 this get data from issuing invoice -->
-          <!-- <n-input v-model:value="paidby" placeholder="Paid By" class="mb-4 w-full " /><br>
-          <n-input v-model:value="issuedby" placeholder="Issued By" class="mb-4 w-full " /><br> -->
-          <n-select v-model:value="selectedStatusVerifying" :options="verifyingstatus" placeholder="Status" class="mb-4 w-full"/>
+          <n-input v-model:value="paidbyguardian"  format="Existing Guardian" placeholder="Existing Guardian" class="mb-4 w-full text-xl"/><br>
+          <n-input v-model:value="issuedbystaff"  format="Existing Staff" placeholder="Existing Staff" class="mb-4 w-full text-xl"/><br>
+          <n-select v-model:value="selectedStatusVerifying" :options="verifyingstatus" placeholder="Status" class="mb-4 w-full"/><br>
           <n-button type="primary" @click="submitVerifyingReceiptReport">Verrify</n-button>
           </div><br>
            <!-- Register Authorised Person -->
@@ -140,7 +140,7 @@
           <n-input v-model:value="stafflastname" placeholder="Last Name" class="mb-4 w-full  text-xl" /><br>
           <n-input v-model:value="stafflage" placeholder="Age" class="mb-4 w-full  text-xl" /><br>
           <n-select v-model:value="selectedStaffGender" :options="gender" placeholder="Gender" class="mb-4 w-full"/>
-          <n-input v-model:value="staffhiredate" placeholder="Hire Date" class="mb-4 w-full  text-xl" /><br>
+          <n-input v-model:value="staffhiredate" type="date" format="MM/dd/yyyy" value-format="yyyy-MM-dd" placeholder="" class="mb-4 w-full text-xl"/><br>
           <n-select v-model:value="selectedStaffPosition" :options="positions" placeholder="Position" class="mb-4 w-full"/>
           <n-input v-model:value="staffphonenumber" placeholder="Phone Number" class="mb-4 w-full  text-xl" /><br>
           <n-input v-model:value="staffemail" placeholder="Email" class="mb-4 w-full  text-xl" /><br>
@@ -201,6 +201,7 @@ const selectedStaffUserID = ref(null)
 const selectedStaffGender = ref(null)
 const selectedStaffPosition = ref(null)
 const selectedPickupMethodstd = ref(null)
+const dobstd = ref(null)
 const userid = ref(null)
 const classname = ref('')
 const eventname = ref('')
@@ -214,8 +215,7 @@ const namepermission = ref('')
 const busname = ref('')
 const licenseplate = ref('')
 const route = ref('')
-const agestd = ref('')
-const dobstd = ref('')
+const agestd = ref(null)
 const specialnotestd = ref('')
 const namestd = ref('')
 const admissiondatestd = ref('')
