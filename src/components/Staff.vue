@@ -1,4 +1,5 @@
 <template>
+  <Navbar />
   <div class="staff-container w-full">
     <br /><br />
     <div class="staff">
@@ -15,6 +16,7 @@
 <script setup>
 import { useMessage } from 'naive-ui'
 import { useRouter } from 'vue-router'
+import Navbar from './navbar.vue'
 
 const message = useMessage()
 const router = useRouter()

@@ -3,7 +3,7 @@
   <div class="min-h-screen flex items-center justify-center bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
     <div class="relative py-3 sm:max-w-md sm:mx-auto">
       <div class="relative px-4 py-10 bg-white shadow-lg rounded-3xl sm:p-10">
-        <div class="max-w-md mx-auto">
+        <div cl ass="max-w-md mx-auto">
           <div>
             <h1 class="text-2xl font-semibold text-center">Guardian Information</h1>
           </div>
@@ -57,7 +57,13 @@
 
               <div class="relative">
                 <label for="profile_picture" class="leading-7 text-sm text-gray-600">Profile Picture</label>
-                <input type="file" id="profile_picture" name="profile_picture" class="w-full bg-white rounded border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                <input type="file" id="profile_picture" name="profile_picture" class="hidden" @change="handleFileUpload">
+                <svg @click="triggerFileUpload" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 cursor-pointer">
+                  <g fill="none">
+                  <path d="M5.25 3A3.25 3.25 0 0 0 2 6.25v9.5A3.25 3.25 0 0 0 5.25 19H11v-4a3 3 0 0 1 3-3h7c.35 0 .687.06 1 .17V6.25A3.25 3.25 0 0 0 18.75 3H5.25zm1.03 3.22L9.5 9.44V7.75a.75.75 0 0 1 1.5 0v3.5a.75.75 0 0 1-.75.75h-3.5a.75.75 0 0 1 0-1.5h1.69L5.22 7.28a.75.75 0 0 1 1.06-1.06zM22 13.268A1.99 1.99 0 0 0 21 13h-7a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-5a2 2 0 0 0-1-1.732z" fill="currentColor"/>
+                  </g>
+                  </svg>
+                   <img v-if="imageUrl" :src="imageUrl" alt="Profile Preview" class="mt-2  w-50 h-50 object-cover">
               </div>
 
               <div class="relative mt-6">
@@ -73,4 +79,20 @@
 
 <script setup>
 import Navbar from '../navbar.vue'
+import { ref } from 'vue';
+
+const imageUrl = ref(null);
+
+const triggerFileUpload = () => {
+  document.getElementById('profile_picture').click();
+};
+
+const handleFileUpload = (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    imageUrl.value = URL.createObjectURL(file);
+  } else {
+    imageUrl.value = null;
+  }
+};
 </script>
