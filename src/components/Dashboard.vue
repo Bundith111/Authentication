@@ -8,7 +8,7 @@
       </p>
       <div class="text-center justify-center">
         <br />
-        <p class="text-center text-3xl bg-blue-300">Login History</p>
+        <p class="uppercase text-center text-3xl bg-blue-300">Login History</p>
         <hr />
         <table class="w-full shadow-md rounded-b overflow-hidden table-fixed mt-4">
           <thead class="bg-gray-100 text-black font-bold">
