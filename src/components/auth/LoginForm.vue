@@ -95,37 +95,31 @@
 import { ref } from 'vue'
 import { useMessage } from 'naive-ui'
 import { useRouter } from 'vue-router'
+import axios from 'axios'
 
 const email = ref('')
 const password = ref('')
 const message = useMessage()
 const router = useRouter()
 
-const handleLogin = () => {
-  const storedUser = JSON.parse(localStorage.getItem('user') || '{}')
-  const status =
-    storedUser.email === email.value && storedUser.password === password.value
-      ? 'Success'
-      : 'Failed'
-
-  // Save login attempt
-  const history = JSON.parse(localStorage.getItem('loginHistory') || '[]')
-  history.push({
-    email: email.value,
-    time: new Date().toLocaleString(),
-    status,
-  })
-  localStorage.setItem('loginHistory', JSON.stringify(history))
-
-  if (status === 'Failed') {
-    message.error('Invalid credentials. Please check your email and password.')
+const handleLogin = async () => {
+  if (!email.value || !password.value) {
+    message.error('Please fill in all fields')
     return
   }
-
-  message.success('Login successful')
-  setTimeout(() => {
-    router.push('/dashboard')
-  }, 1000)
+  try {
+    // Adjust the URL to your backend login endpoint
+    await axios.post('http://127.0.0.1:8000/api/login', {
+      email: email.value,
+      password: password.value
+    })
+    message.success('Login successful')
+    setTimeout(() => {
+      router.push('/dashboard')
+    }, 1000)
+  } catch (error) {
+    message.error(error.response?.data?.message || 'Invalid credentials. Please check your email and password.')
+  }
 }
 
 const goToRegister = () => {
