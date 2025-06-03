@@ -10,6 +10,15 @@ import StaffR from '@/components/auth/StaffR.vue'
 import Teacher from '@/components/Teacher.vue'
 import verify from '@/components/auth/verify.vue'
 import guardian from '@/components/UI/guardian.vue'
+import Creating from '@/components/UI/StaffRegister/Creating.vue'
+import Bus from '@/components/UI/StaffRegister/Bus.vue'
+import StudentRegister from '@/components/UI/StaffRegister/StudentRegister.vue'
+import Invoice from '@/components/UI/StaffRegister/Invoice.vue'
+import Authorized from '@/components/UI/StaffRegister/Authorized.vue'
+import TeacherRegister from '@/components/UI/StaffRegister/TeacherRegister.vue'
+import StaffRegister from '@/components/UI/StaffRegister/StaffRegister.vue'
+import Role from '@/components/UI/StaffRegister/Role.vue'
+
 const routes = [
   {
     path: '/auth/login/gregisterForm',
@@ -54,6 +63,46 @@ const routes = [
     path: '/auth/staffregister',
     name: 'StaffRegister',
     component: StaffR
+  },
+  {
+    path: '/auth/staffregister/creating',
+    name: 'StaffRegisterCreating',
+    component: Creating
+  },
+  {
+    path: '/auth/staffregister/bus',
+    name: 'StaffRegisterBus',
+    component: Bus
+  },
+  {
+    path: '/auth/staffregister/student',
+    name: 'StaffRegisterStudent',
+    component: StudentRegister
+  },
+  {
+    path: '/auth/staffregister/invoice',
+    name: 'StaffRegisterInvoice',
+    component: Invoice
+  },
+  {
+    path: '/auth/staffregister/authorized',
+    name: 'StaffRegisterAuthorized',
+    component: Authorized
+  },
+  {
+    path: '/auth/staffregister/teacher',
+    name: 'StaffRegisterTeacher',
+    component: TeacherRegister
+  },
+  {
+    path: '/auth/staffregister/staff',
+    name: 'StaffRegisterStaff',
+    component: StaffRegister
+  },
+  {
+    path: '/auth/staffregister/role',
+    name: 'StaffRegisterRole',
+    component: Role
   },
   {
     path: '/teacher',
