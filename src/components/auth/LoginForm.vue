@@ -87,46 +87,81 @@
           Forgot Password?
         </button>
       </div>
+      <div class="" >{{ }}</div>
     </n-form>
   </div>
 </template>
 
-<script setup>
+<script >
 import { ref } from 'vue'
 import { useMessage } from 'naive-ui'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
+import { useStore } from 'vuex'
 
-const email = ref('')
-const password = ref('')
-const message = useMessage()
-const router = useRouter()
+export default {
+  name: 'LoginTemplate' ,
+  components: {
 
-const handleLogin = async () => {
-  if (!email.value || !password.value) {
-    message.error('Please fill in all fields')
-    return
-  }
-  try {
-    // Adjust the URL to your backend login endpoint
-    await axios.post('http://127.0.0.1:8000/api/login', {
-      email: email.value,
-      password: password.value
+  } ,
+  setup(){
+    const email = ref('')
+    const password = ref('')
+    const message = useMessage()
+    const router = useRouter()
+    const store = useStore()
+
+    const dataFromUserModule = ref('')
+
+    // Read data from state in module
+    console.log( store.getters['user/getName'] ) // => No Name
+    // Set data to state in module
+    store.commit('user/setName', "Step 2" ) // Step 2 - Updated by commit
+    console.log( store.getters['user/getName'] )
+    // call function to execute and request data from server
+    store.dispatch('user/updateName',{}).then( res => {
+      console.log( res )
     })
-    message.success('Login successful')
-    setTimeout(() => {
-      router.push('/dashboard')
-    }, 1000)
-  } catch (error) {
-    message.error(error.response?.data?.message || 'Invalid credentials. Please check your email and password.')
+    .catch( err => {
+
+    })
+
+
+    function handleLogin(){
+      if (!email.value || !password.value) {
+        message.error('Please fill in all fields')
+        return
+      }
+      try {
+        // Adjust the URL to your backend login endpoint
+        // await axios.post('http://127.0.0.1:8000/api/login', {
+        //   email: email.value,
+        //   password: password.value
+        // })
+        // message.success('Login successful')
+        // setTimeout(() => {
+        //   router.push('/dashboard')
+        // }, 1000)
+      } catch (error) {
+        message.error(error.response?.data?.message || 'Invalid credentials. Please check your email and password.')
+      }
+    }
+
+    const goToRegister = () => {
+      router.push('/auth/register')
+    }
+
+    const goToForgotPassword = () => {
+      router.push('/auth/forgot-password')
+    }
+    return {
+      handleLogin ,
+      goToForgotPassword ,
+      goToRegister ,
+      email ,
+      password
+    }
   }
 }
 
-const goToRegister = () => {
-  router.push('/auth/register')
-}
-
-const goToForgotPassword = () => {
-  router.push('/auth/forgot-password')
-}
 </script>
