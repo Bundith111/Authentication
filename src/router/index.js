@@ -3,7 +3,7 @@ import LoginForm from '../components/auth/LoginForm.vue'
 import RegisterForm from '../components/auth/RegisterForm.vue'
 import ForgotPassword from '../components/auth/ForgotPassword.vue'
 import Dashboard from '../components/Dashboard.vue'
-import EnrollPage from '../components/EnrollPage.vue'
+import Home from '../components/FrontPage/Home.vue'
 import Staff from '@/components/Staff.vue'
 import GRegisterForm from '@/components/auth/GRegisterForm.vue'
 import StaffR from '@/components/auth/StaffR.vue'
@@ -18,18 +18,27 @@ import Authorized from '@/components/UI/StaffRegister/Authorized.vue'
 import TeacherRegister from '@/components/UI/StaffRegister/TeacherRegister.vue'
 import StaffRegister from '@/components/UI/StaffRegister/StaffRegister.vue'
 import Role from '@/components/UI/StaffRegister/Role.vue'
+import AboutUs from '@/components/FrontPage/AboutUs.vue'
 
 const routes = [
+
   {
     path: '/auth/login/gregisterForm',
     name: 'gregisterForm',
     component: GRegisterForm,
   },
   {
-    path: '/enroll',
-    name: 'enroll',
-    component: EnrollPage,
+    path: '/frontpage/home', 
+    name: 'home',
+    component: Home,
   },
+    {
+    path: '/frontpage/aboutus',
+    name: 'aboutus',
+    component: AboutUs,
+  },
+
+
   {
     path: '/',
     redirect: '/auth/login',

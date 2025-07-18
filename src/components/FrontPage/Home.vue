@@ -3,20 +3,18 @@
 <Navbar />
 <SlideShow />
 <Hero />
-<Footer />
    </div>
 </template>
 <script>
-import Navbar from './UI/Navbar.vue';
-import Hero from './UI/Hero.vue';
-import SlideShow from './UI/SlideShow.vue';
-import Footer from './UI/Footer.vue';
+import Navbar from '../FrontPage/Navbar.vue';
+import Hero from '../FrontPage/HomeCom/Hero.vue';
+import SlideShow from '../FrontPage/HomeCom/SlideShow.vue';
+
 
 export default{
     components:{
         Navbar,
         SlideShow,
-        Footer,
         Hero
     }
 }
