@@ -26,15 +26,15 @@
                  <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide"> Actions</th>
               </tr>
               </thead>
-              <tbody class="bg-white divide-y divide-gray-200 text-gray-700">
+              <tbody class="bg-white divide-y divide-gray-200 text-gray-700 text-[18px]">
                 <tr v-for="(staff, index) in staffList" :key="index" class="hover:bg-gray-100 transition">
                   <td class=" px-6 py-4 text-center">{{ index + 1 }}</td>
                   <td class=" px-6 py-4 text-center">{{ staff.name }}</td>
                   <td class=" px-6 py-4 text-center">{{ staff.email }}</td>
                   <td class=" px-6 py-4 text-center">{{ staff.role }}</td>
                   <td class="px-6 py-4 flex justify-center  gap-1">
-                    <n-button type="warning" @click="editStaff(staff)">Edit</n-button>
-                    <n-button type="error" @click="deleteStaff(staff)">Delete</n-button>
+                    <n-button size="small" ghost type="warning" @click="editStaff(staff)">Edit</n-button>
+                    <n-button size="small" ghost type="error" @click="deleteStaff(staff)">Delete</n-button>
                   </td>
                 </tr>
               </tbody>
