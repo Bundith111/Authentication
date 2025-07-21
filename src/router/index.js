@@ -3,7 +3,7 @@ import LoginForm from '../components/auth/LoginForm.vue'
 import RegisterForm from '../components/auth/RegisterForm.vue'
 import ForgotPassword from '../components/auth/ForgotPassword.vue'
 import Dashboard from '../components/Dashboard.vue'
-import EnrollPage from '../components/EnrollPage.vue'
+import Home from '../components/FrontPage/Home.vue'
 import Staff from '@/components/Staff.vue'
 import GRegisterForm from '@/components/auth/GRegisterForm.vue'
 import StaffR from '@/components/auth/StaffR.vue'
@@ -18,9 +18,14 @@ import Authorized from '@/components/UI/StaffRegister/Authorized.vue'
 import TeacherRegister from '@/components/UI/StaffRegister/TeacherRegister.vue'
 import StaffRegister from '@/components/UI/StaffRegister/StaffRegister.vue'
 import Role from '@/components/UI/StaffRegister/Role.vue'
+<<<<<<< HEAD
 import guardianlist from '@/components/UI/StaffRegister/guardianlist.vue'
+=======
+import AboutUs from '@/components/FrontPage/AboutUs.vue'
+>>>>>>> ce8a03391061571e179f715e61fac0d0b58bae13
 
 const routes = [
+
   {
     path: '/guardianlist',
     name: 'GuardianList',
@@ -32,10 +37,17 @@ const routes = [
     component: GRegisterForm,
   },
   {
-    path: '/enroll',
-    name: 'enroll',
-    component: EnrollPage,
+    path: '/frontpage/home', 
+    name: 'home',
+    component: Home,
   },
+    {
+    path: '/frontpage/aboutus',
+    name: 'aboutus',
+    component: AboutUs,
+  },
+
+
   {
     path: '/',
     redirect: '/auth/login',

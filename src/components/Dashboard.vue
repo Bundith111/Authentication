@@ -1,51 +1,48 @@
 <template>
   <DashboardLayout>
-    <div class="dashboard-container">
-      <br /><br />
-      <div class="dashboard">
-        <p class="uppercase text-center text-green-600 text-4xl h-[80px]">
-          Welcome to your Dashboard!
-        </p>
-        <div class="text-center justify-center">
-          <br />
-          <p class="uppercase text-center text-3xl bg-blue-300">Login History</p>
-          <hr />
-          <table class="w-full shadow-md rounded-b overflow-hidden table-fixed mt-4">
-            <thead class="bg-gray-100 text-black font-bold">
-              <tr>
-                <th class="w-1/4 px-4 py-2 text-center">No</th>
-                <th class="w-1/4 px-4 py-2 text-center">Email</th>
-                <th class="w-1/4 px-4 py-2 text-center">Login Time</th>
-                <th class="w-1/4 px-4 py-2 text-center">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="(entry, index) in loginHistory"
-                :key="index"
-                class="bg-white hover:bg-gray-50 border-b"
-              >
-                <td class="px-4 py-2 text-center">{{ index + 1 }}</td>
-                <td class="px-4 py-2 text-center">{{ entry.email }}</td>
-                <td class="px-4 py-2 text-center">{{ entry.time }}</td>
-                <td class="px-4 py-2 text-center">
-                  <span
-                    :class="entry.status === 'Success' ? 'text-green-600' : 'text-red-600'"
-                    class="font-semibold"
-                  >
-                    {{ entry.status }}
-                  </span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+     <div class="dashboard-container px-4"><br>
 
-          <button class="bg-red-500 text-white px-4 py-2 rounded mt-4" @click="clearHistory">
-            Clear Login History
-          </button>
-        </div>
-      </div>
+    <div class="text-center justify-center mt-10">
+      <!-- Title -->
+    <div class="mb-12">
+    <p class="text-center text-5xl font-extrabold uppercase tracking-wide drop-shadow">Login History</p>
     </div>
+   <br><br>
+      <!-- Table -->
+      <table class="w-full table-auto border-collapse border-2 border-black shadow-md rounded-md text-lg mt-4">
+        <thead class="bg-gray-900 text-white">
+          <tr>
+            <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide">No</th>
+            <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide">Email</th>
+            <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide">Login Time</th>
+            <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide">Status</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white text-gray-800 text-[17px]">
+          <tr
+            v-for="(entry, index) in loginHistory"
+            :key="index"
+            class="hover:bg-gray-100 transition"
+          >
+            <td class=" px-6 py-4 text-center">{{ index + 1 }}</td>
+            <td class=" px-6 py-4 text-center">{{ entry.email }}</td>
+            <td class=" px-6 py-4 text-center">{{ entry.time }}</td>
+            <td class=" px-6 py-4 text-center">
+              <span
+                :class="entry.status === 'Success' ? 'text-green-600' : 'text-red-600'"
+              >
+                {{ entry.status }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table><br>
+
+      <!-- Button -->
+       <n-button ghost type="error" @click="clearHistory">🧹 Clear Login History</n-button>
+    </div>
+  </div>
+
   </DashboardLayout>
 </template>
 

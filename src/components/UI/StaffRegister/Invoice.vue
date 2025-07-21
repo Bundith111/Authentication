@@ -1,36 +1,41 @@
 <template>
-  <div>
+    <n-config-provider :theme-overrides="themeOverrides">
+  <div class="  items-center justify-center">
     <!-- issuing invoice -->
-    <h2 class=" font-bold mb-4  h-[30px] text-center"> Issuing Invoice</h2>
-    <div class=" rounded shadow ">
-      <n-select v-model:value="selectedinvoiceStudent" :options="invoicestudents" placeholder="Select Student" class="mb-4 w-full"/>
-      <n-select v-model:value="selectedInvoiceType" :options="invoicetypes" placeholder="Invoice Type" class="mb-4 w-full"/>
-      <n-input type="textarea" v-model:value="invoiceDescription" placeholder="Description" class="mb-4 w-full "/><br>
-      <n-input v-model:value="invoiceamount" placeholder="Amount" class="mb-4 w-full text-xl" /><br>
-      <n-input v-model:value="invoicedate" type="date" format="MM/dd/yyyy" value-format="yyyy-MM-dd" placeholder="" class="mb-4 w-full text-xl"/><br>
-      <n-select v-model:value="invoiceselectedStatus" :options="invoicestatus" placeholder="Status" class="mb-4 w-full"/>
-      <n-button type="primary" @click="submitInvoiceReport">Create</n-button>
-    </div><br>
+      <n-card title="Issuing Invoice" class="shadow-md">
+      <div class="space-y-4">
+        <n-select v-model:value="selectedinvoiceStudent" :options="invoicestudents" placeholder="Select Student" class=" w-full"/>
+        <n-select v-model:value="selectedInvoiceType" :options="invoicetypes" placeholder="Invoice Type" class=" w-full"/>
+        <n-input type="textarea" v-model:value="invoiceDescription" placeholder="Description" class=" w-full "/><br>
+        <n-input v-model:value="invoiceamount" placeholder="Amount" class=" w-full text-xl" /><br>
+        <n-input v-model:value="invoicedate" type="date" format="MM/dd/yyyy" value-format="yyyy-MM-dd" placeholder="" class=" w-full text-xl"/><br>
+        <n-select v-model:value="invoiceselectedStatus" :options="invoicestatus" placeholder="Status" class=" w-full"/>
+        <n-button size="small" ghost color="#AC1515" @click="submitInvoiceReport">Create</n-button>
+      </div>
+    </n-card>
     <!-- Verifying Receipt -->
-    <h2 class=" font-bold mb-4  h-[30px] text-center"> Verifying Receipt</h2>
-    <div class=" rounded shadow ">
-      <n-input v-model:value="receiptid" placeholder="Receipt ID" class="mb-4 w-full " /><br>
-      <n-input v-model:value="invoiceid" placeholder="Invoice ID" class="mb-4 w-full " /><br>
-      <n-input v-model:value="studentname" placeholder="Student Name" class="mb-4 w-full " /><br>
-      <n-input v-model:value="paymentdate" type="date" format="MM/dd/yyyy" value-format="yyyy-MM-dd" placeholder="" class="mb-4 w-full text-xl"/><br>
-      <n-input v-model:value="amountpaid" placeholder="Amount Paid" class="mb-4 w-full text-xl" /><br>
-      <n-select v-model:value="selectedPaymentMethodVerifying" :options="verifyingpaymentmethods" placeholder="Payment Method" class="mb-4 w-full"/>
-      <n-input v-model:value="transactionid" placeholder="Transaction ID" class="mb-4 w-full " /><br>
-      <!-- 2 this get data from issuing invoice -->
-      <n-input v-model:value="paidbyguardian"  format="Existing Guardian" placeholder="Existing Guardian" class="mb-4 w-full text-xl"/><br>
-      <n-input v-model:value="issuedbystaff"  format="Existing Staff" placeholder="Existing Staff" class="mb-4 w-full text-xl"/><br>
-      <n-select v-model:value="selectedStatusVerifying" :options="verifyingstatus" placeholder="Status" class="mb-4 w-full"/><br>
-      <n-button type="primary" @click="submitVerifyingReceiptReport">Verrify</n-button>
-    </div><br>
+      <n-card title="Verifying Receipt" class="shadow-md">
+      <div class="space-y-4">
+        <n-input v-model:value="receiptid" placeholder="Receipt ID" class=" w-full " /><br>
+        <n-input v-model:value="invoiceid" placeholder="Invoice ID" class=" w-full " /><br>
+        <n-input v-model:value="studentname" placeholder="Student Name" class=" w-full " /><br>
+        <n-input v-model:value="paymentdate" type="date" format="MM/dd/yyyy" value-format="yyyy-MM-dd" placeholder="" class=" w-full text-xl"/><br>
+        <n-input v-model:value="amountpaid" placeholder="Amount Paid" class=" w-full text-xl" /><br>
+        <n-select v-model:value="selectedPaymentMethodVerifying" :options="verifyingpaymentmethods" placeholder="Payment Method" class=" w-full"/>
+        <n-input v-model:value="transactionid" placeholder="Transaction ID" class=" w-full " /><br>
+        <!-- 2 this get data from issuing invoice -->
+        <n-input v-model:value="paidbyguardian"  format="Existing Guardian" placeholder="Existing Guardian" class=" w-full text-xl"/><br>
+        <n-input v-model:value="issuedbystaff"  format="Existing Staff" placeholder="Existing Staff" class=" w-full text-xl"/><br>
+        <n-select v-model:value="selectedStatusVerifying" :options="verifyingstatus" placeholder="Status" class=" w-full"/>
+        <n-button size="small" ghost color="#AC1515" @click="submitVerifyingReceiptReport">Verrify</n-button>
+      </div>
+    </n-card>
   </div>
+  </n-config-provider>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref,computed } from 'vue'
+import { NCard, NInput, NButton, NSelect } from 'naive-ui'
 
 const selectedinvoiceStudent = ref(null)
 const selectedInvoiceType = ref(null)

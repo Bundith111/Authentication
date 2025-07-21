@@ -1,49 +1,51 @@
 <template>
   <DashboardLayout>
-    <div class="staff-container">
-      <br /><br />
-      <div class="staff">
-        <p class="uppercase text-center text-green-600 text-4xl mb-[30px] h-[60px]">
-          Welcome to STAFF page!
-        </p>
-      </div>
-      <div class="create w-full text-right font-bold h-[50px]">
-        <n-button type="primary" @click="goToStaffR" class="uppercase text-center text-2xl"
-          >+ Create Staff</n-button
-        >
-      </div>
-      <div class="text-center justify-center">
-        <p class="uppercase text-center text-3xl bg-blue-300 mb-[20px]">Staff List</p>
-        <hr />
-        <table
-          class="w-full shadow-md rounded-b overflow-hidden table-fixed mt-4 border border-collapse"
-        >
-          <thead class="bg-gray-100 text-black font-bold">
-            <tr>
-              <th class="w-1/4 px-4 py-2 text-center border">No</th>
-              <th class="w-1/4 px-4 py-2 text-center border">Name</th>
-              <th class="w-1/4 px-4 py-2 text-center border">Email</th>
-              <th class="w-1/4 px-4 py-2 text-center border">Role</th>
-              <th class="w-1/4 px-4 py-2 text-center border">Edit</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(staff, index) in staffList" :key="index">
-              <td class="w-1/4 px-4 py-2 text-center border">{{ index + 1 }}</td>
-              <td class="w-1/4 px-4 py-2 text-center border">{{ staff.name }}</td>
-              <td class="w-1/4 px-4 py-2 text-center border">{{ staff.email }}</td>
-              <td class="w-1/4 px-4 py-2 text-center border">{{ staff.role }}</td>
-              <td class="px-4 py-2 text-center border flex justify-center gap-1">
-                <n-button type="info" @click="editStaff(staff)">Edit</n-button>
-                <n-button type="error" @click="deleteStaff(staff)">Delete</n-button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="frist min-h-screen w-[84%] text-center justify-center font-sans antialiased">
+      <div class="container mx-auto my-10 px-4 sm:px-6 lg:px-8"><br>
+        
+        <!-- Title -->
+        <div class="mb-12">
+          <p class="text-center text-5xl font-extrabold uppercase tracking-wide drop-shadow">
+             STAFF LIST
+          </p>
+        </div>
+
+        <!-- Create Staff Button -->
+         <div class="mb-8 h-10 flex justify-end">
+              <n-button type="error" @click="goToStaffR">+ Create Staff</n-button>
+        </div>
+        <!-- Staff List -->
+          <div class="staff-list overflow-x-auto mt-6 m-10">
+             <table class="w-full table-auto border-collapse border-2 border-black shadow-md rounded-md text-lg">
+              <thead class="bg-gray-900 text-white">
+               <tr>
+                 <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide"> No</th>
+                 <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide">Name</th>
+                 <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide">Email</th>
+                 <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide">Role</th>
+                 <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide"> Actions</th>
+              </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200 text-gray-700 text-[18px]">
+                <tr v-for="(staff, index) in staffList" :key="index" class="hover:bg-gray-100 transition">
+                  <td class=" px-6 py-4 text-center">{{ index + 1 }}</td>
+                  <td class=" px-6 py-4 text-center">{{ staff.name }}</td>
+                  <td class=" px-6 py-4 text-center">{{ staff.email }}</td>
+                  <td class=" px-6 py-4 text-center">{{ staff.role }}</td>
+                  <td class="px-6 py-4 flex justify-center  gap-1">
+                    <n-button size="small" ghost type="warning" @click="editStaff(staff)">Edit</n-button>
+                    <n-button size="small" ghost type="error" @click="deleteStaff(staff)">Delete</n-button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
     </div>
   </DashboardLayout>
 </template>
+
+
 
 <script setup>
 import { ref } from 'vue'
@@ -75,9 +77,10 @@ function deleteStaff(staff) {
 </script>
 
 <style>
-.staff-container {
+.frist{
   margin-left: 200px;
 }
+
 .create {
   padding-right: 30px;
   border-radius: 5px;
