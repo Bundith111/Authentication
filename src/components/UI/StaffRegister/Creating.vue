@@ -1,48 +1,61 @@
-<template>
-    <div>
-          <!-- creating classroom -->
-          <h2 class=" font-bold mb-4  h-[30px] text-center"> Creating Classroom</h2>
-          <div class=" rounded shadow ">
-          <n-input v-model:value="classname" placeholder="Class Name" class="mb-4 w-full text-xl" /><br>
-          <n-button type="primary" @click="submitClassroomReport" >Create</n-button>
-          </div><br>
-          <!-- creating event -->
-          <h2 class=" font-bold mb-4  h-[30px] text-center"> Creating Event</h2>
-          <div class=" rounded shadow ">
-          <n-input v-model:value="eventname" placeholder="Event Name" class="mb-4 w-full  text-xl" /><br>
-          <n-input v-model:value="eventdate" type="date" format="MM/dd/yyyy" value-format="yyyy-MM-dd" placeholder="" class="mb-4 w-full text-xl"/><br>
-          <n-input v-model:value="typeofevent" placeholder="Type of Event" class="mb-4 w-full  text-xl" /><br>
-          <n-input type="textarea" v-model:value="descriptionevent" placeholder="Description" class="mb-4 w-full "/><br>
-          <n-select v-model:value="selectedUser" :options="eventsendtouser" placeholder="Sent To" class="mb-4 w-full"/>
-          <n-button type="primary" @click="submitEventReport">Create</n-button>
-          </div><br>
-          <!-- creating division -->
-          <h2 class=" font-bold mb-4  h-[30px] text-center"> Creating Division</h2>
-          <div class=" rounded shadow ">
-          <n-input v-model:value="namedivision" placeholder="Name" class="mb-4 w-full  text-xl" /><br>
-          <n-input type="textarea" v-model:value="descriptiondivision" placeholder="Description" class="mb-4 w-full "/><br>
-          <n-button type="primary" @click="submitDivisionReport">Create</n-button>
-          </div><br>
-          <!-- creating position -->
-          <h2 class=" font-bold mb-4  h-[30px] text-center"> Creating Position</h2>
-          <div class=" rounded shadow ">
-          <n-input v-model:value="nameposition" placeholder="Name" class="mb-4 w-full  text-xl" /><br>
-          <n-input type="textarea" v-model:value="descriptionposition" placeholder="Description" class="mb-4 w-full "/><br>
-          <n-button type="primary" @click="submitPositionReport">Create</n-button>
-          </div><br>
-          <!-- creating permission -->
-          <h2 class=" font-bold mb-4  h-[30px] text-center"> Creating Permission</h2>
-          <div class=" rounded shadow ">
-          <n-input v-model:value="namepermission" placeholder="Name" class="mb-4 w-full  text-xl" /><br>
-          <n-input type="textarea" v-model:value="descriptionpermission" placeholder="Description" class="mb-4 w-full "/><br>
-          <n-select v-model:value="selectedDivision" :options="divisions" placeholder="Under Division" class="mb-4 w-full"/>
-          <n-select v-model:value="selectedPosition" :options="positions" placeholder="Under Position" class="mb-4 w-full"/>
-          <n-button type="primary" @click="submitPermissionReport">Create</n-button>
-          </div><br>
-    </div>
+ <template>
+  <n-config-provider :theme-overrides="themeOverrides">
+  <div class="  items-center justify-center ">
+    <!-- creating classroom -->
+    <n-card title="Creating Classroom" class="shadow-md">
+      <div class="space-y-4">
+        <n-input v-model:value="classname" placeholder="Class Name" class="w-full text-xl " :style="customInputStyle" />
+        <n-button size="small" ghost color="#AC1515" @click="submitClassroomReport" class="w-full ">Create</n-button>
+      </div>
+    </n-card>
+
+    <!-- creating event -->
+    <n-card title="Creating Event" class="shadow-md">
+      <div class="space-y-4">
+        <n-input v-model:value="eventname" placeholder="Event Name" class="w-full text-xl" :style="customInputStyle" />
+        <n-input v-model:value="eventdate" type="date" format="MM/dd/yyyy" value-format="yyyy-MM-dd" placeholder="" class="w-full text-xl" :style="customInputStyle" />
+        <n-input v-model:value="typeofevent" placeholder="Type of Event" class="w-full text-xl" :style="customInputStyle" />
+        <n-input type="textarea" v-model:value="descriptionevent" placeholder="Description" class="w-full" />
+        <n-select v-model:value="selectedUser" :options="eventsendtouser" placeholder="Sent To" class="w-full" />
+        <n-button size="small" ghost color="#AC1515" @click="submitEventReport" class="w-full ">Create</n-button>
+      </div>
+    </n-card>
+
+    <!-- creating division -->
+    <n-card title="Creating Division" class="shadow-md">
+      <div class="space-y-4">
+        <n-input v-model:value="namedivision" placeholder="Name" class="w-full text-xl" :style="customInputStyle" />
+        <n-input type="textarea" v-model:value="descriptiondivision" placeholder="Description" class="w-full" />
+        <n-button size="small" ghost color="#AC1515" @click="submitDivisionReport" class="w-full ">Create</n-button>
+      </div>
+    </n-card>
+
+    <!-- creating position -->
+    <n-card title="Creating Position" class="shadow-md">
+      <div class="space-y-4">
+        <n-input v-model:value="nameposition" placeholder="Name" class="w-full text-xl" :style="customInputStyle" />
+        <n-input type="textarea" v-model:value="descriptionposition" placeholder="Description" class="w-full" />
+        <n-button size="small" ghost color="#AC1515" @click="submitPositionReport" class="w-full ">Create</n-button>
+      </div>
+    </n-card>
+
+    <!-- creating permission -->
+    <n-card title="Creating Permission" class="shadow-md">
+      <div class="space-y-4">
+        <n-input v-model:value="namepermission" placeholder="Name" class="w-full text-xl" :style="customInputStyle" />
+        <n-input type="textarea" v-model:value="descriptionpermission" placeholder="Description" class="w-full" />
+        <n-select v-model:value="selectedDivision" :options="divisions" placeholder="Under Division" class="w-full" />
+        <n-select v-model:value="selectedPosition" :options="positions" placeholder="Under Position" class="w-full" />
+        <n-button size="small" ghost color="#AC1515" @click="submitPermissionReport" class="w-full ">Create</n-button>
+      </div>
+    </n-card>
+  </div>
+  </n-config-provider>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref,computed } from 'vue'
+import { NCard, NInput, NButton, NSelect } from 'naive-ui' 
+
 const classname = ref('')
 const eventname = ref('')
 const eventdate = ref('')
@@ -94,6 +107,7 @@ const positions = [
 ]
 
 </script>
-<style lang="">
-    
+
+<style>
+
 </style>
