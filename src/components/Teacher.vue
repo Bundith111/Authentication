@@ -3,7 +3,7 @@
     <div class="flex min-h-screen">
       <div class="flex-1 flex items-center justify-center bg-gray-100 p-6">
         <div class="w-full max-w-3xl space-y-10">
-          <h1 class="text-3xl font-bold text-center">Teacher</h1>
+          <h1 class="text-4xl font-gray text-center ">Teacher</h1>
 
           <div class="bg-white p-6 rounded shadow">
             <h2 class="text-xl font-semibold mb-4">Student Performance Report</h2>

@@ -18,8 +18,14 @@ import Authorized from '@/components/UI/StaffRegister/Authorized.vue'
 import TeacherRegister from '@/components/UI/StaffRegister/TeacherRegister.vue'
 import StaffRegister from '@/components/UI/StaffRegister/StaffRegister.vue'
 import Role from '@/components/UI/StaffRegister/Role.vue'
+import guardianlist from '@/components/UI/StaffRegister/guardianlist.vue'
 
 const routes = [
+  {
+    path: '/guardianlist',
+    name: 'GuardianList',
+    component: guardianlist,
+  },
   {
     path: '/auth/login/gregisterForm',
     name: 'gregisterForm',

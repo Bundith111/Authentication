@@ -4,6 +4,10 @@ import router from './router'
 import { createNaiveUI } from './plugins/naive'
 import './assets/main.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import { createPinia } from 'pinia'
+const pinia = createPinia()
+app.use(pinia)
+
 
 import axios from 'axios'
 
