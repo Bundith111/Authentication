@@ -21,8 +21,15 @@ import Role from '@/components/UI/StaffRegister/Role.vue'
 
 import guardianlist from '@/components/UI/StaffRegister/guardianlist.vue'
 import AboutUs from '@/components/FrontPage/AboutUs.vue'
+import TeacherR from '@/components/auth/TeacherR.vue'
 
 const routes = [
+  {
+    path: '/auth/teacherregister',
+    name: 'TeacherRegister',
+    component: TeacherR,
+  },
+
   {
     path: '/guardianlist',
     name: 'GuardianList',

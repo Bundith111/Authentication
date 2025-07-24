@@ -67,4 +67,15 @@ const clearHistory = () => {
 .dashboard-container {
   margin-left: 200px;
 }
+table, th, td {
+  border: 1px solid rgb(59, 59, 59) !important;
+  border-collapse: collapse !important;
+}
+ td {
+  padding: 5px;
+  text-align: center;
+}
+td:hover {
+    background-color: #f1f1f1;
+  }
 </style>
