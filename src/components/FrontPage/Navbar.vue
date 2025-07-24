@@ -2,7 +2,7 @@
   <nav class="Navbar">
     <div class="container">
       <div class="flex">
-        <img src="D:/internship/Authentication/public/img/bg/Adobe Express - file.png" alt="Logo" class="logo" />
+        <img src="/img/bg/Adobe Express - file.png" alt="Logo" class="logo" />
         <span>Kindergarten Buddy</span>
       </div>
       <div>
@@ -29,16 +29,18 @@
               </router-link>
             </b>
           </li>
-          <li><b><a href="#" class="hover:text-blue-300">Teachers</a></b></li>
-          <li><b><a href="#" class="hover:text-blue-300">Classes</a></b></li>
-          <li><b><a href="#" class="hover:text-blue-300">Contact Us</a></b></li>
+          <li>
+            <b><a href="#" class="hover:text-blue-300">Teachers</a></b>
+          </li>
+          <li>
+            <b><a href="#" class="hover:text-blue-300">Classes</a></b>
+          </li>
+          <li>
+            <b><a href="#" class="hover:text-blue-300">Contact Us</a></b>
+          </li>
           <li>
             <b>
-              <router-link
-                to="/auth/login"
-                class="hover:text-blue-300"
-                exact-active-class="active"
-              >
+              <router-link to="/auth/login" class="hover:text-blue-300" exact-active-class="active">
                 Login
               </router-link>
             </b>
@@ -112,7 +114,9 @@ export default {}
   border-radius: 4px;
   text-decoration: none;
   color: black;
-  transition: box-shadow 0.3s ease, color 0.3s ease;
+  transition:
+    box-shadow 0.3s ease,
+    color 0.3s ease;
 }
 
 .Navbar .container ul li a:hover {

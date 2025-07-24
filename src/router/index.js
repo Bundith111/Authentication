@@ -18,14 +18,11 @@ import Authorized from '@/components/UI/StaffRegister/Authorized.vue'
 import TeacherRegister from '@/components/UI/StaffRegister/TeacherRegister.vue'
 import StaffRegister from '@/components/UI/StaffRegister/StaffRegister.vue'
 import Role from '@/components/UI/StaffRegister/Role.vue'
-<<<<<<< HEAD
+
 import guardianlist from '@/components/UI/StaffRegister/guardianlist.vue'
-=======
 import AboutUs from '@/components/FrontPage/AboutUs.vue'
->>>>>>> ce8a03391061571e179f715e61fac0d0b58bae13
 
 const routes = [
-
   {
     path: '/guardianlist',
     name: 'GuardianList',
@@ -37,16 +34,15 @@ const routes = [
     component: GRegisterForm,
   },
   {
-    path: '/frontpage/home', 
+    path: '/frontpage/home',
     name: 'home',
     component: Home,
   },
-    {
+  {
     path: '/frontpage/aboutus',
     name: 'aboutus',
     component: AboutUs,
   },
-
 
   {
     path: '/',
@@ -77,50 +73,50 @@ const routes = [
     name: 'staff',
     component: Staff,
   },
-    {
+  {
     path: '/auth/staffregister',
     name: 'StaffRegister',
-    component: StaffR
+    component: StaffR,
   },
   {
     path: '/auth/staffregister/creating',
     name: 'StaffRegisterCreating',
-    component: Creating
+    component: Creating,
   },
   {
     path: '/auth/staffregister/bus',
     name: 'StaffRegisterBus',
-    component: Bus
+    component: Bus,
   },
   {
     path: '/auth/staffregister/student',
     name: 'StaffRegisterStudent',
-    component: StudentRegister
+    component: StudentRegister,
   },
   {
     path: '/auth/staffregister/invoice',
     name: 'StaffRegisterInvoice',
-    component: Invoice
+    component: Invoice,
   },
   {
     path: '/auth/staffregister/authorized',
     name: 'StaffRegisterAuthorized',
-    component: Authorized
+    component: Authorized,
   },
   {
     path: '/auth/staffregister/teacher',
     name: 'StaffRegisterTeacher',
-    component: TeacherRegister
+    component: TeacherRegister,
   },
   {
     path: '/auth/staffregister/staff',
     name: 'StaffRegisterStaff',
-    component: StaffRegister
+    component: StaffRegister,
   },
   {
     path: '/auth/staffregister/role',
     name: 'StaffRegisterRole',
-    component: Role
+    component: Role,
   },
   {
     path: '/teacher',
