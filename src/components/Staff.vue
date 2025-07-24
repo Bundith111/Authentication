@@ -23,7 +23,8 @@
                  <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide">Name</th>
                  <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide">Email</th>
                  <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide">Role</th>
-                 <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide"> Actions</th>
+                 <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide">Position</th>
+                 <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide">Actions</th>
               </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200 text-gray-700 text-[18px]">
@@ -32,7 +33,8 @@
                   <td class=" px-6 py-4 text-center">{{ staff.name }}</td>
                   <td class=" px-6 py-4 text-center">{{ staff.email }}</td>
                   <td class=" px-6 py-4 text-center">{{ staff.role }}</td>
-                  <td class="px-6 py-4 flex justify-center  gap-1">
+                  <td class=" px-6 py-4 text-center">{{ staff.position }}</td>
+                  <td class="px-6 py-4 flex justify-center gap-1">
                     <n-button size="small" ghost type="warning" @click="editStaff(staff)">Edit</n-button>
                     <n-button size="small" ghost type="error" @click="deleteStaff(staff)">Delete</n-button>
                   </td>
@@ -44,8 +46,6 @@
     </div>
   </DashboardLayout>
 </template>
-
-
 
 <script setup>
 import { ref } from 'vue'
@@ -62,9 +62,9 @@ function goToStaffR() {
 }
 
 const staffList = [
-  { name: 'John Doe', email: 'john@example.com', role: 'Admin' },
-  { name: 'Jane Smith', email: 'jane@example.com', role: 'Manager' },
-  { name: 'Mike Johnson', email: 'mike@example.com', role: 'Staff' },
+  { name: 'John Doe', email: 'john@example.com', role: 'Admin', position: 'Team Lead' },
+  { name: 'Jane Smith', email: 'jane@example.com', role: 'Manager', position: 'Operations Manager' },
+  { name: 'Mike Johnson', email: 'mike@example.com', role: 'Staff', position: 'Sales Associate' },
 ]
 
 function editStaff(staff) {
@@ -88,4 +88,16 @@ function deleteStaff(staff) {
   font-weight: bold;
   cursor: pointer;
 }
+
+table, th, td {
+  border: 1px solid rgb(59, 59, 59) !important;
+  border-collapse: collapse !important;
+}
+ td {
+  padding: 5px;
+  text-align: center;
+}
+td:hover {
+    background-color: #f1f1f1;
+  }
 </style>

@@ -35,6 +35,7 @@
       <div class="space-y-4">
         <n-input v-model:value="nameposition" placeholder="Name" class="w-full text-xl" :style="customInputStyle" />
         <n-input type="textarea" v-model:value="descriptionposition" placeholder="Description" class="w-full" />
+        <n-select v-model:value="selectedDivision" :options="divisiononposition" placeholder="Under Division" class="w-full" />
         <n-button size="small" ghost color="#AC1515" @click="submitPositionReport" class="w-full ">Create</n-button>
       </div>
     </n-card>
@@ -104,6 +105,11 @@ const positions = [
   { label: 'Position A', value: 'positionA' },
   { label: 'Position B', value: 'positionB' },
   { label: 'Position C', value: 'positionC' },
+]
+const divisiononposition = [
+  { label: 'Division A', value: 'divisionA' },
+  { label: 'Division B', value: 'divisionB' },
+  { label: 'Division C', value: 'divisionC' },
 ]
 
 </script>

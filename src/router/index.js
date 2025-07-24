@@ -18,13 +18,18 @@ import Authorized from '@/components/UI/StaffRegister/Authorized.vue'
 import TeacherRegister from '@/components/UI/StaffRegister/TeacherRegister.vue'
 import StaffRegister from '@/components/UI/StaffRegister/StaffRegister.vue'
 import Role from '@/components/UI/StaffRegister/Role.vue'
-<<<<<<< HEAD
 import guardianlist from '@/components/UI/StaffRegister/guardianlist.vue'
-=======
 import AboutUs from '@/components/FrontPage/AboutUs.vue'
->>>>>>> ce8a03391061571e179f715e61fac0d0b58bae13
+import TeacherR from '@/components/auth/TeacherR.vue'
+
 
 const routes = [
+
+  {
+    path: '/auth/teacherregister',
+    name: 'TeacherRegister',
+    component: TeacherR
+  },
 
   {
     path: '/guardianlist',
