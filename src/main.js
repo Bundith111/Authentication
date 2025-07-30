@@ -4,18 +4,22 @@ import router from './router'
 import { createNaiveUI } from './plugins/naive'
 import './assets/main.css'
 import '@fortawesome/fontawesome-free/css/all.min.css'
-// import { createPinia } from 'pinia'
-// const pinia = createPinia()
-// app.use(pinia)
 
 import axios from 'axios'
+import { getAuthorization } from '@/plugins/authentication'
 
-// Import the main store within store/index.js
+axios.interceptors.request.use((config) => {
+  const token = getAuthorization()
+  if (token) {
+    config.headers.Authorization = token
+  }
+  return config
+})
+
 import store from './store'
 
 const app = createApp(App)
 
-// Use it within the App
 app.use(store)
 
 app.use(router)
