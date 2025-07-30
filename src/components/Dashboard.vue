@@ -65,7 +65,7 @@ const clearHistory = () => {
 
 <style scoped>
 .dashboard-container {
-  margin-left: 200px;
+  margin-left: 80px;
 }
 table, th, td {
   border: 1px solid rgb(59, 59, 59) !important;
