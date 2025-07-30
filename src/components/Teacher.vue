@@ -77,7 +77,7 @@ function deleteTeacher(teacher) {
 
 <style>
 .frist {
-  margin-left: 200px;
+  margin-left: 80px;
 }
 .create {
   padding-right: 30px;

@@ -25,7 +25,7 @@
 
 <script setup>
 import { NButton, NInput, NSelect } from 'naive-ui'
-import Navbar from '../navbar.vue'
+import Navbar from '../sidebar.vue'
 import { ref,computed } from 'vue'
 import Creating from '../UI/StaffRegister/Creating.vue'
 import Bus from '../UI/StaffRegister/Bus.vue'
