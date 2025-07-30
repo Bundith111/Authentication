@@ -9,7 +9,7 @@ import GRegisterForm from '@/components/auth/GRegisterForm.vue'
 import StaffR from '@/components/auth/StaffR.vue'
 import Teacher from '@/components/Teacher.vue'
 import verify from '@/components/auth/verify.vue'
-import guardian from '@/components/UI/guardian.vue'
+import Guardian from '@/components/UI/Guardian.vue'
 import Creating from '@/components/UI/StaffRegister/Creating.vue'
 import Bus from '@/components/UI/StaffRegister/Bus.vue'
 import StudentRegister from '@/components/UI/StaffRegister/StudentRegister.vue'
@@ -18,8 +18,7 @@ import Authorized from '@/components/UI/StaffRegister/Authorized.vue'
 import TeacherRegister from '@/components/UI/StaffRegister/TeacherRegister.vue'
 import StaffRegister from '@/components/UI/StaffRegister/StaffRegister.vue'
 import Role from '@/components/UI/StaffRegister/Role.vue'
-
-import guardianlist from '@/components/UI/StaffRegister/guardianlist.vue'
+import guardianlist from '@/components/guardianlist.vue'
 import AboutUs from '@/components/FrontPage/AboutUs.vue'
 import TeacherR from '@/components/auth/TeacherR.vue'
 
@@ -138,7 +137,7 @@ const routes = [
   {
     path: '/guardian',
     name: 'guardian',
-    component: guardian,
+    component: Guardian,
   },
 ]
 

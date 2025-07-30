@@ -1,108 +1,170 @@
 <template>
-  <div class="flex flex-col md:flex-row min-h-screen w-full">
-    <Navbar class="w-full md:w-90 shrink-0" />
-    <div class="flex-1 flex items-center justify-center bg-gray-100 px-4 sm:px-6 lg:px-8 py-6">
-      <div class="w-full max-w-4xl space-y-10">
-        <p class="uppercase text-center text-green-600 text-2xl sm:text-3xl md:text-4xl h-[80px] bg-amber-50 flex items-center justify-center">
-          👨‍👩‍👧 Guardian Information
-        </p>
+  <DashboardLayout>
+    <div class="flex w-full min-h-screen bg-gray-10">
+      <div class="flex-1 flex flex-col items-center p-6">
+        <br />
+        <div class="mt-6">
+          <p class="text-center text-5xl font-extrabold uppercase tracking-wide drop-shadow text-black-700">
+            Guardian
+          </p>
+        </div>
+        <br />
 
-        <div class="w-full h-full">
-          <h2 class="text-center font-mono text-lg md:text-xl">Creating</h2>
-          <div class="rounded shadow grid grid-cols-1 sm:grid-cols-2 gap-6 p-4 bg-white">
-            <div>
-              <label for="userID" class="block text-gray-700 text-sm font-bold mb-2">User ID</label>
-              <n-input id="userID" v-model:value="userID" placeholder="UserID" class="w-full text-base" />
-            </div>
-            <div>
-              <label for="firstname" class="block text-gray-700 text-sm font-bold mb-2">First Name</label>
-              <n-input id="firstname" v-model:value="firstname" placeholder="FirstName" class="w-full text-base" />
-            </div>
-            <div>
-              <label for="lastname" class="block text-gray-700 text-sm font-bold mb-2">Last Name</label>
-              <n-input id="lastname" v-model:value="lastname" placeholder="LastName" class="w-full text-base" />
-            </div>
-            <div>
-              <label for="age" class="block text-gray-700 text-sm font-bold mb-2">Age</label>
-              <n-select id="age" v-model:value="age" :options="ageOptions" placeholder="Age" class="w-full text-base" />
-            </div>
-            <div>
-              <label for="occupation" class="block text-gray-700 text-sm font-bold mb-2">Occupation</label>
-              <n-input id="occupation" v-model:value="occupation" placeholder="Occupation" class="w-full text-base" />
-            </div>
-            <div>
-              <label for="relationship" class="block text-gray-700 text-sm font-bold mb-2">Relationship</label>
-              <n-input id="relationship" v-model:value="relationship" placeholder="Relationship With Student" class="w-full text-base" />
-            </div>
-            <div>
-              <label for="phoneNumber" class="block text-gray-700 text-sm font-bold mb-2">Phone Number</label>
-              <n-input id="phoneNumber" v-model:value="phoneNumber" placeholder="Phone Number" class="w-full text-base" />
-            </div>
-            <div>
-              <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
-              <n-input id="email" v-model:value="email" placeholder="Email" class="w-full text-base" />
-            </div>
-            <div class="sm:col-span-2">
-              <label for="address" class="block text-gray-700 text-sm font-bold mb-2">Address</label>
-              <n-input id="address" v-model:value="address" placeholder="Address" class="w-full text-base" />
-            </div>
-            <div class="sm:col-span-2">
-              <label for="profile_picture" class="block text-gray-700 text-sm font-bold mb-2">Document Picture</label>
-              <input type="file" id="profile_picture" name="profile_picture" class="hidden" @change="handleFileUpload">
-              <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <svg @click="triggerFileUpload" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                  fill="currentColor" class="w-6 h-6 cursor-pointer text-blue-500">
-                  <g fill="none">
-                    <path d="..." fill="currentColor" />
-                  </g>
-                </svg>
-                <div class="relative group">
-                  <img v-if="imageUrl" :src="imageUrl" alt="Profile Preview" class="w-28 h-28 rounded object-cover border" />
-                  <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-opacity duration-300 rounded"></div>
+        <!-- Form/Card Section -->
+        <div class="w-[40%] p-6 rounded-xl shadow-lg space-y-8">
+          <n-config-provider :theme-overrides="themeOverrides">
+            <div class="items-center justify-center">
+              <n-card title="Guardian Registration" class="shadow-md">
+                <div class="space-y-4">
+                  <n-select v-model:value="GuardianUserID" :options="userid" placeholder="UserID" class="w-full" />
+                  <n-input v-model:value="Guardianfristname" placeholder="First Name" class="w-full text-xl" />
+                  <n-input v-model:value="Guardianlastname" placeholder="Last Name" class="w-full text-xl" />
+                  <n-input v-model:value="Guardianage" placeholder="Age" class="w-full text-xl" />
+                  <n-select v-model:value="selectedGender" :options="gender" placeholder="Gender" class="w-full" />
+                  <n-input v-model:value="hireDate" type="date" placeholder="" class="w-full text-xl" />
+                  <n-select v-model:value="selectedOccupation" :options="positions" placeholder="Occupation" class="w-full" />
+                  <n-input v-model:value="phoneNumber" placeholder="Phone Number" class="w-full text-xl" />
+                  <n-input v-model:value="email" placeholder="Email" class="w-full text-xl" />
+                  <n-input v-model:value="address" placeholder="Address" class="w-full text-xl" />
+                  <n-input v-model:value="relationship" placeholder="Relationship" class="w-full text-xl" />
+
+                  <!-- File Upload -->
+                  <label for="profilePictureStaff" class="block mb-2 text-sm font-medium text-black-700">Profile Picture:</label>
+                  <input
+                    type="file"
+                    id="profilePictureStaff"
+                    accept="image/*,.pdf,.doc,.docx"
+                    multiple
+                    @change="handleProfilePictureUpload"
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+                  />
+
+                  <!-- Image Preview -->
+                  <p class="text-sm font-medium text-black-700 mb-1">Image Previews:</p>
+                  <div class="flex flex-wrap gap-2">
+                    <img
+                      v-for="(src, idx) in previewImages"
+                      :key="idx"
+                      :src="src"
+                      alt="Preview"
+                      class="max-w-xs rounded-lg"
+                    />
+                  </div>
+
+                  <!-- Submit Button -->
+                  <n-button size="small" ghost color="#AC1515" @click="submitGuardianForm">Create</n-button>
                 </div>
-              </div>
+              </n-card>
             </div>
-            <div class="sm:col-span-2">
-              <n-button type="primary" @click="submitClassroomReport" class="w-full">Create</n-button>
-            </div>
-          </div>
+          </n-config-provider>
         </div>
       </div>
     </div>
-  </div>
+  </DashboardLayout>
 </template>
 
-
 <script setup>
-import { ref } from 'vue';
-import { NSelect } from 'naive-ui';
+import { ref } from 'vue'
+import { NCard, NInput, NButton, NSelect } from 'naive-ui'
+import DasboardLayout from './DashboardLayout.vue'
 
-const imageUrl = ref(null);
-const userID = ref('');
-const firstname = ref('');
-const lastname = ref('');
-const age = ref('');
-const occupation = ref('');
-const relationship = ref('');
-const phoneNumber = ref('');
-const email = ref('');
-const address = ref('');
+// Reactive form values
+const GuardianUserID = ref(null)
+const Guardianfristname = ref('')
+const Guardianlastname = ref('')
+const Guardianage = ref('')
+const selectedGender = ref(null)
+const hireDate = ref('')
+const selectedOccupation = ref(null)
+const phoneNumber = ref('')
+const email = ref('')
+const address = ref('')
+const relationship = ref('')
+const previewImages = ref([])
 
-const ageOptions = ref(Array.from({ length: 100 }, (_, i) => ({
-  label: (i + 1).toString(),
-  value: (i + 1).toString(),
-})));
+// Gender, position, and user ID options
+const gender = [
+  { label: 'Male', value: 'male' },
+  { label: 'Female', value: 'female' },
+  { label: 'Other', value: 'other' }
+]
 
-const triggerFileUpload = () => {
-  document.getElementById('profile_picture').click();
-};
 
-const handleFileUpload = (event) => {
-  const file = event.target.files[0];
-  if (file) {
-    imageUrl.value = URL.createObjectURL(file);
-  } else {
-    imageUrl.value = null;
+const positions = [
+  { label: 'Business', value: 'business' },
+  { label: 'Farmer', value: 'farmer' },
+  { label: 'Teacher', value: 'teacher' },
+  { label: 'Other', value: 'other' }
+]
+
+const userid = [
+  { label: 'User A', value: 'userA' },
+  { label: 'User B', value: 'userB' },
+  { label: 'User C', value: 'userC' }
+]
+
+// File upload and preview
+function handleProfilePictureUpload(event) {
+  const files = event.target.files
+  previewImages.value = []
+
+  Array.from(files).forEach(file => {
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader()
+      reader.onload = () => {
+        previewImages.value.push(reader.result)
+      }
+      reader.readAsDataURL(file)
+    }
+  })
+}
+
+// Submit function
+function submitGuardianForm() {
+  console.log('Guardian Form Data:', {
+    GuardianUserID: GuardianUserID.value,
+    Guardianfristname: Guardianfristname.value,
+    Guardianlastname: Guardianlastname.value,
+    Guardianage: Guardianage.value,
+    selectedGender: selectedGender.value,
+    hireDate: hireDate.value,
+    selectedOccupation: selectedOccupation.value,
+    phoneNumber: phoneNumber.value,
+    email: email.value,
+    address: address.value,
+    relationship: relationship.value
+  })
+}
+  
+// Theme for black border on focus/hover
+const themeOverrides = {
+  Input: {
+    borderColor: '#000000',
+    borderHover: '#000000',
+    borderFocus: '#000000',
+    boxShadowFocus: '0 0 0 1px black',
+    boxShadowHover: '0 0 0 1px black',
+    colorFocus: '#000000'
+  },
+  Select: {
+    borderColor: '#000000',
+    borderHover: '#000000',
+    borderFocus: '#000000',
+    boxShadowFocus: '0 0 0 1px black',
+    boxShadowHover: '0 0 0 1px black',
+    colorFocus: '#000000'
   }
-};
+}
 </script>
+
+<style scoped>
+:deep(.n-input:hover .n-input__state-border),
+:deep(.n-input:focus-within .n-input__state-border),
+:deep(.n-select:hover .n-base-selection .n-base-selection__border),
+:deep(.n-select:focus-within .n-base-selection .n-base-selection__border) {
+  border-color: black !important;
+  box-shadow: 0 0 0 1px black !important;
+  border-width: 1px;
+  border-radius: 6px;
+}
+</style>
