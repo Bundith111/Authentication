@@ -1,6 +1,6 @@
 <template>
   <DashboardLayout>
-    <div class="frist min-h-screen w-[84%] text-center justify-center font-sans antialiased">
+    <div class="first min-h-screen w-[90%] text-center justify-center font-sans antialiased">
       <div class="container mx-auto my-10 px-4 sm:px-6 lg:px-8"><br>
 
         <!-- Title -->
@@ -76,9 +76,14 @@ function deleteTeacher(teacher) {
 </script>
 
 <style>
-.frist {
-  margin-left: 80px;
+.first {
+  margin-left: 5%;
 }
+.container {
+  max-width: 1230px;
+  margin-left: 14%;
+}
+
 .create {
   padding-right: 30px;
   border-radius: 5px;

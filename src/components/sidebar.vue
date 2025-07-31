@@ -97,7 +97,7 @@ onMounted(() => {
 }
 </style> -->
 <template>
-  <div class="flex h-screen flex-col sm:flex-row w-full sm:w-[16%] sticky-top px-4 sm:px-10 position-relative text-center justify-center bg-gray-900 text-white font-bold">
+  <div class="fixed flex h-screen mb-10 flex-col sm:flex-row w-full sm:w-[16%] sticky-top px-4 sm:px-10 position-relative text-center justify-center bg-gray-900 text-white font-bold">
     <!-- Sidebar -->
     <div :class="['fixed top-0 left-0 h-full w-full text-white text-xl font-sans z-50 transition-transform duration-300',
         sidebarOpen ? 'translate-x-0' : '-translate-x-full','w-64 sm:translate-x-0 sm:static sm:w-40']">
