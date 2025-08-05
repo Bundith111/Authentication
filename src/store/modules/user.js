@@ -1,73 +1,64 @@
-import crud from '../../api/crud'
+import axios from 'axios'
+import { setToken, setUser } from '@/plugins/authentication'
 
-// initial state
-const state = () => ({
-  model: {
-    name: "users" ,
-    title: "អ្នកប្រើប្រាស់" 
-  },
-  records: [] ,
-  record: null ,
-  name : 'No name'
-})
+const state = {
+  user: null,
+  token: null,
+}
 
-// getters
 const getters = {
-  getRecords (state, getters, rootState) {
-    return state.records
-  },
-  getRecord (state, getters, rootState) {
-    return state.record
-  },
-  getName(state , getters, rootState){
-    return state.name
-  }
+  isAuthenticated: (state) => !!state.token,
+  getUser: (state) => state.user,
 }
 
-// actions
-const actions = {
-  async list ({ state, commit, rootState },params) {
-    return await crud.list(import.meta.env.VITE_API_SERVER+"/"+state.model.name + "?" + new URLSearchParams({
-        search: params.search ,
-        perPage: params.perPage ,
-        page: params.page
-      }).toString()
-    )
-  },
-  async read ({ state, commit, rootState },params) {
-    return await crud.read(import.meta.env.VITE_API_SERVER+"/"+state.model.name+"/"+params.id+'/read')
-  },
-  async create ({ state, commit, rootState },params) {
-    return await crud.create(import.meta.env.VITE_API_SERVER+"/"+state.model.name+"/create",params)
-  },
-  async update ({ state, commit, rootState },params) {
-    return await crud.update(import.meta.env.VITE_API_SERVER+"/"+state.model.name+"/update",params)
-  },
-  async delete ({ state, commit, rootState },params) {
-    return await crud.delete(import.meta.env.VITE_API_SERVER+"/"+state.model.name+"/"+params.id+"/delete")
-  },
-  async updateName({ state, commit, rootState },params) {
-    return await ( state.name + " - Updated by action" )
-  }
-}
-
-// mutations
 const mutations = {
-  setRecords (state, records) {
-    state.records = records
+  SET_USER(state, user) {
+    state.user = user
   },
-  setRecord (state, record) {
-    state.record = record
+  SET_TOKEN(state, token) {
+    state.token = token
   },
-  setName(state , name){
-    state.name = name + " Updated by commit"
-  }
+  LOGOUT(state) {
+    state.user = null
+    state.token = null
+  },
+}
+
+const actions = {
+  async login({ commit }, { email, password }) {
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/login', {
+        email,
+        password,
+      })
+
+      const { user, authorization } = response.data
+
+      if (user && authorization?.access_token) {
+        commit('SET_USER', user)
+        commit('SET_TOKEN', authorization)
+        setUser(user)
+        setToken(authorization)
+        return response
+      } else {
+        throw new Error('Invalid login response')
+      }
+    } catch (error) {
+      throw error
+    }
+  },
+
+  logout({ commit }) {
+    commit('LOGOUT')
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+  },
 }
 
 export default {
   namespaced: true,
-  state, // Property
-  getters, // Read value from state
-  actions, // Do crud funcions with from server
-  mutations // Set value to state
+  state,
+  getters,
+  mutations,
+  actions,
 }

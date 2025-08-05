@@ -1,64 +1,46 @@
 <template>
   <DashboardLayout>
-    <div class="flex min-h-screen">
-      <div class="flex-1 flex items-center justify-center bg-gray-100 p-6">
-        <div class="w-full max-w-3xl space-y-10">
-          <h1 class="text-3xl font-bold text-center">Teacher</h1>
+    <div class="first min-h-screen w-[90%] text-center justify-center font-sans antialiased">
+      <div class="container mx-auto my-10 px-4 sm:px-6 lg:px-8"><br>
 
-          <div class="bg-white p-6 rounded shadow">
-            <h2 class="text-xl font-semibold mb-4">Student Performance Report</h2>
-            <n-select
-              v-model:value="selectedStudent"
-              :options="students"
-              placeholder="Select Student"
-              class="mb-4 w-full"
-            />
-            <n-input v-model:value="term" placeholder="Term" class="mb-4 w-full" />
-            <div class="border p-4 rounded mb-4">
-              <n-input v-model:value="subjectName" placeholder="Subject Name" class="mb-2 w-full" />
-              <n-input v-model:value="progress" placeholder="Progress" class="mb-2 w-full" />
-              <n-button @click="addSubject" class="w-full">Create More Subject</n-button>
-            </div>
-            <n-input
-              type="textarea"
-              v-model:value="finalComment"
-              placeholder="Final Comment"
-              class="mb-4 w-full"
-            />
-            <n-button type="primary" @click="submitPerformanceReport">Submit</n-button>
-          </div>
+        <!-- Title -->
+        <div class="mb-12">
+          <p class="text-center text-5xl font-extrabold uppercase tracking-wide drop-shadow">
+             TEACHER LIST
+          </p>
+        </div>
 
-          <div class="bg-white p-6 rounded shadow">
-            <h2 class="text-xl font-semibold mb-4">Health Record</h2>
-            <n-select
-              v-model:value="healthStudent"
-              :options="students"
-              placeholder="Select Student"
-              class="mb-4 w-full"
-            />
-            <n-input v-model:value="incidentType" placeholder="Incident Type" class="mb-4 w-full" />
-            <n-input
-              type="textarea"
-              v-model:value="healthDetail"
-              placeholder="Detail"
-              class="mb-4 w-full"
-            />
-            <n-button type="primary" @click="submitHealthRecord">Submit</n-button>
-          </div>
+        <!-- Create Teacher Button -->
+        <div class="mb-8 h-10 flex justify-end">
+          <n-button type="error" @click="goToTeacherR">+ Create Teacher</n-button>
+        </div>
 
-          <div class="bg-white p-6 rounded shadow">
-            <h2 class="text-xl font-semibold mb-4">Upload Schedule</h2>
-            <n-upload :action="uploadUrl">
-              <n-button>Upload Class Schedule</n-button>
-            </n-upload>
-          </div>
+        <!-- Teacher List Table -->
+        <div class="teacher-list overflow-x-auto mt-6 m-10">
+         <table class="w-full table-auto border-collapse border-2 border-black shadow-md rounded-md text-lg">
+          <thead class="bg-gray-900 text-white">
+            <tr>
+              <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide">No</th>
+              <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide">Name</th>
+              <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide">Email</th>
+              <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide">Role </th>
+              <th class="border border-black px-6 py-4 font-bold text-center uppercase tracking-wide">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200 text-gray-700 text-[18px]">
+            <tr v-for="(teacher, index) in teacherList" :key="index" class="hover:bg-gray-100 transition">
+              <td class=" px-6 py-4 text-center">{{ index + 1 }}</td>
+              <td class=" px-6 py-4 text-center">{{ teacher.name }}</td>
+              <td class=" px-6 py-4 text-center">{{ teacher.email }}</td>
+              <td class=" px-6 py-4 text-center">{{ teacher.role }}</td>
+              <td class=" px-6 py-4 flex justify-center gap-1">
+                <n-button size="small" ghost type="warning" @click="editTeacher(teacher)">Edit</n-button>
+                <n-button size="small" ghost type="error" @click="deleteTeacher(teacher)">Delete</n-button>
+              </td>
+            </tr>
+          </tbody>
+          </table>
 
-          <div class="bg-white p-6 rounded shadow">
-            <h2 class="text-xl font-semibold mb-4">Upload Curriculum</h2>
-            <n-upload :action="uploadUrl">
-              <n-button>Upload Curriculum</n-button>
-            </n-upload>
-          </div>
         </div>
       </div>
     </div>
@@ -67,33 +49,58 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useMessage } from 'naive-ui'
+import { useRouter } from 'vue-router'
 import DashboardLayout from './UI/DashboardLayout.vue'
 
-const selectedStudent = ref(null)
-const students = [
-  { label: 'Existing Student', value: 'existing' },
-  { label: 'New Student', value: 'new' },
+const message = useMessage()
+const router = useRouter()
+
+function goToTeacherR() {
+  message.info('Redirecting to Create Teacher')
+  router.push('/auth/teacherregister')
+}
+
+const teacherList = [
+  { name: 'John Doe', email: 'john@example.com', role: 'Math Teacher' },
+  { name: 'Jane Smith', email: 'jane@example.com', role: 'Art Teacher' },
+  { name: 'Mike Johnson', email: 'mike@example.com', role: 'Science Teacher' },
+  { name: 'Kim Minji', email: 'minji@example.com', role: 'Music Teacher' },
 ]
-const term = ref('')
-const subjectName = ref('')
-const progress = ref('')
-const finalComment = ref('')
-
-const healthStudent = ref(null)
-const incidentType = ref('')
-const healthDetail = ref('')
-
-const uploadUrl = 'https://example.com/upload'
-
-function addSubject() {
-  console.log('Added:', subjectName.value, progress.value)
+function editTeacher(teacher) {
+  message.info(`Edit teacher: ${teacher.name}`)
 }
-
-function submitPerformanceReport() {
-  console.log('Submitted Performance Report')
-}
-
-function submitHealthRecord() {
-  console.log('Submitted Health Record')
+function deleteTeacher(teacher) {
+  message.warning(`Delete teacher: ${teacher.name}`)
 }
 </script>
+
+<style>
+.first {
+  margin-left: 5%;
+}
+.container {
+  max-width: 1230px;
+  margin-left: 14%;
+}
+
+.create {
+  padding-right: 30px;
+  border-radius: 5px;
+  text-align: right;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+table, th, td {
+  border: 1px solid rgb(59, 59, 59) !important;
+  border-collapse: collapse !important;
+}
+ td {
+  padding: 5px;
+  text-align: center;
+}
+td:hover {
+    background-color: #f1f1f1;
+  }
+</style>

@@ -1,18 +1,18 @@
 <template>
   <DashboardLayout>
-    <div class="first min-h-screen w-[90%] text-center justify-center font-sans antialiased ">
+    <div class="first min-h-screen w-[90%] text-center justify-center font-sans antialiased">
       <div class="container mx-auto my-10 px-4 sm:px-6 lg:px-8"><br>
         
         <!-- Title -->
         <div class="mb-12">
           <p class="text-center text-5xl font-extrabold uppercase tracking-wide drop-shadow">
-             STAFF LIST
+             GUARDIAN LIST
           </p>
         </div>
 
         <!-- Create Staff Button -->
          <div class="mb-8 h-10 flex justify-end">
-              <n-button type="error" @click="goToStaffR">+ Create Staff</n-button>
+              <n-button type="error" @click="goToguardian">+ Create Guardian</n-button>
         </div>
         <!-- Staff List -->
           <div class="staff-list overflow-x-auto mt-6 m-10">
@@ -45,7 +45,6 @@
   </DashboardLayout>
 </template>
 
-
 <script setup>
 import { ref } from 'vue'
 import { useMessage } from 'naive-ui'
@@ -55,15 +54,15 @@ import DashboardLayout from './UI/DashboardLayout.vue'
 const message = useMessage()
 const router = useRouter()
 
-function goToStaffR() {
+function goToguardian() {
   message.info('Redirecting to Create Staff')
-  router.push('/auth/staffregister')
+  router.push('/guardian')
 }
 
 const staffList = [
-  { name: 'John Doe', email: 'john@example.com', role: 'Admin', position: 'Team Lead' },
-  { name: 'Jane Smith', email: 'jane@example.com', role: 'Manager', position: 'Operations Manager' },
-  { name: 'Mike Johnson', email: 'mike@example.com', role: 'Staff', position: 'Sales Associate' },
+  { name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+  { name: 'Jane Smith', email: 'jane@example.com', role: 'Manager' },
+  { name: 'Mike Johnson', email: 'mike@example.com', role: 'Staff' },
 ]
 
 function editStaff(staff) {
@@ -84,6 +83,7 @@ function deleteStaff(staff) {
   margin-left: 14%;
 }
 
+
 .create {
   padding-right: 30px;
   border-radius: 5px;
@@ -91,16 +91,4 @@ function deleteStaff(staff) {
   font-weight: bold;
   cursor: pointer;
 }
-
-table, th, td {
-  border: 1px solid rgb(59, 59, 59) !important;
-  border-collapse: collapse !important;
-}
- td {
-  padding: 5px;
-  text-align: center;
-}
-td:hover {
-    background-color: #f1f1f1;
-  }
 </style>

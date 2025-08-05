@@ -9,7 +9,7 @@ import GRegisterForm from '@/components/auth/GRegisterForm.vue'
 import StaffR from '@/components/auth/StaffR.vue'
 import Teacher from '@/components/Teacher.vue'
 import verify from '@/components/auth/verify.vue'
-import guardian from '@/components/UI/guardian.vue'
+import Guardian from '@/components/UI/guardian.vue'
 import Creating from '@/components/UI/StaffRegister/Creating.vue'
 import Bus from '@/components/UI/StaffRegister/Bus.vue'
 import StudentRegister from '@/components/UI/StaffRegister/StudentRegister.vue'
@@ -18,29 +18,40 @@ import Authorized from '@/components/UI/StaffRegister/Authorized.vue'
 import TeacherRegister from '@/components/UI/StaffRegister/TeacherRegister.vue'
 import StaffRegister from '@/components/UI/StaffRegister/StaffRegister.vue'
 import Role from '@/components/UI/StaffRegister/Role.vue'
+import guardianlist from '@/components/guardianlist.vue'
 import AboutUs from '@/components/FrontPage/AboutUs.vue'
 import Teachers from '@/components/FrontPage/Teachers.vue'
 import StuApp from '@/components/FrontPage/StuApp.vue'
 import ContactUs from '@/components/FrontPage/ContactUs.vue'
+import TeacherR from '@/components/auth/TeacherR.vue'
 
 const routes = [
+  {
+    path: '/auth/teacherregister',
+    name: 'TeacherRegister',
+    component: TeacherR,
+  },
 
+  {
+    path: '/guardianlist',
+    name: 'GuardianList',
+    component: guardianlist,
+  },
   {
     path: '/auth/login/gregisterForm',
     name: 'gregisterForm',
     component: GRegisterForm,
   },
   {
-    path: '/frontpage/home', 
+    path: '/frontpage/home',
     name: 'home',
     component: Home,
   },
-    {
+  {
     path: '/frontpage/aboutus',
     name: 'aboutus',
     component: AboutUs,
   },
-
   {
     path: '/frontpage/teachers',
     name: 'teachers',
@@ -51,7 +62,6 @@ const routes = [
     name: 'contactus',
     component: ContactUs,
   },
-
    {
     path: '/frontpage/enroll',
     name: 'enroll',
@@ -87,50 +97,50 @@ const routes = [
     name: 'staff',
     component: Staff,
   },
-    {
+  {
     path: '/auth/staffregister',
     name: 'StaffRegister',
-    component: StaffR
+    component: StaffR,
   },
   {
     path: '/auth/staffregister/creating',
     name: 'StaffRegisterCreating',
-    component: Creating
+    component: Creating,
   },
   {
     path: '/auth/staffregister/bus',
     name: 'StaffRegisterBus',
-    component: Bus
+    component: Bus,
   },
   {
     path: '/auth/staffregister/student',
     name: 'StaffRegisterStudent',
-    component: StudentRegister
+    component: StudentRegister,
   },
   {
     path: '/auth/staffregister/invoice',
     name: 'StaffRegisterInvoice',
-    component: Invoice
+    component: Invoice,
   },
   {
     path: '/auth/staffregister/authorized',
     name: 'StaffRegisterAuthorized',
-    component: Authorized
+    component: Authorized,
   },
   {
     path: '/auth/staffregister/teacher',
     name: 'StaffRegisterTeacher',
-    component: TeacherRegister
+    component: TeacherRegister,
   },
   {
     path: '/auth/staffregister/staff',
     name: 'StaffRegisterStaff',
-    component: StaffRegister
+    component: StaffRegister,
   },
   {
     path: '/auth/staffregister/role',
     name: 'StaffRegisterRole',
-    component: Role
+    component: Role,
   },
   {
     path: '/teacher',
@@ -145,7 +155,7 @@ const routes = [
   {
     path: '/guardian',
     name: 'guardian',
-    component: guardian,
+    component: Guardian,
   },
 ]
 

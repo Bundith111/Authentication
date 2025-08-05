@@ -1,8 +1,8 @@
 <template>
   <DashboardLayout>
-     <div class="dashboard-container px-4"><br>
+     <div class="dashboard-container w-[90%] px-4"><br>
 
-    <div class="text-center justify-center mt-10">
+    <div class="container text-center justify-center mt-10">
       <!-- Title -->
     <div class="mb-12">
     <p class="text-center text-5xl font-extrabold uppercase tracking-wide drop-shadow">Login History</p>
@@ -65,6 +65,22 @@ const clearHistory = () => {
 
 <style scoped>
 .dashboard-container {
-  margin-left: 200px;
+  margin-left: 5%;
 }
+.container {
+  max-width: 1230px;
+  margin-left: 14%;
+}
+
+table, th, td {
+  border: 1px solid rgb(59, 59, 59) !important;
+  border-collapse: collapse !important;
+}
+ td {
+  padding: 5px;
+  text-align: center;
+}
+td:hover {
+    background-color: #f1f1f1;
+  }
 </style>

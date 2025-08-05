@@ -21,7 +21,7 @@
           <router-link to="/teacher" class="block">Teacher</router-link>
         </li>
         <li class="p-4 hover:bg-gray-700">
-          <router-link to="/guardian" class="block">Guardian</router-link>
+          <router-link to="/guardianlist" class="block">Guardian</router-link>
         </li>
         <li class="p-4 hover:bg-gray-700">
           <router-link to="/auth/login" class="block">Logout</router-link>
