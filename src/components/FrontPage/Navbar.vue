@@ -9,36 +9,35 @@
         <ul class="flex space-x-4">
           <li>
             <b>
-              <router-link
-                to="/frontpage/home"
-                class="hover:text-blue-300"
-                exact-active-class="active"
-              >
+              <router-link to="/frontpage/home" class="hover:text-blue-300" exact-active-class="active">
                 Home
               </router-link>
             </b>
           </li>
           <li>
             <b>
-              <router-link
-                to="/frontpage/aboutus"
-                class="hover:text-blue-300"
-                exact-active-class="active"
-              >
+              <router-link to="/frontpage/aboutus" class="hover:text-blue-300" exact-active-class="active">
                 About Us
               </router-link>
             </b>
           </li>
-          <li><b><a href="#" class="hover:text-blue-300">Teachers</a></b></li>
-          <li><b><a href="#" class="hover:text-blue-300">Classes</a></b></li>
-          <li><b><a href="#" class="hover:text-blue-300">Contact Us</a></b></li>
           <li>
             <b>
-              <router-link
-                to="/auth/login"
-                class="hover:text-blue-300"
-                exact-active-class="active"
-              >
+              <router-link to="/frontpage/teachers" class="hover:text-blue-300" exact-active-class="active">
+                Teachers
+              </router-link>
+            </b>
+          </li>
+          <li>
+            <b>
+              <router-link to="/frontpage/contactus" class="hover:text-blue-300" exact-active-class="active">
+                Contact Us
+              </router-link>
+            </b>
+          </li>
+          <li>
+            <b>
+              <router-link to="/auth/login" class="hover:text-blue-300" exact-active-class="active">
                 Login
               </router-link>
             </b>
@@ -56,7 +55,8 @@ export default {}
 <style scoped>
 .Navbar {
   font-family: 'Poppins', sans-serif;
-  position: fixed; /* Stick to top */
+  position: fixed;
+  /* Stick to top */
   top: 0;
   left: 0;
   width: 100%;
@@ -66,7 +66,8 @@ export default {}
   height: 60px;
   display: flex;
   align-items: center;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15); /* shadow under navbar */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  /* shadow under navbar */
   z-index: 1000;
 }
 

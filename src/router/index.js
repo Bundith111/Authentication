@@ -19,6 +19,9 @@ import TeacherRegister from '@/components/UI/StaffRegister/TeacherRegister.vue'
 import StaffRegister from '@/components/UI/StaffRegister/StaffRegister.vue'
 import Role from '@/components/UI/StaffRegister/Role.vue'
 import AboutUs from '@/components/FrontPage/AboutUs.vue'
+import Teachers from '@/components/FrontPage/Teachers.vue'
+import StuApp from '@/components/FrontPage/StuApp.vue'
+import ContactUs from '@/components/FrontPage/ContactUs.vue'
 
 const routes = [
 
@@ -38,6 +41,22 @@ const routes = [
     component: AboutUs,
   },
 
+  {
+    path: '/frontpage/teachers',
+    name: 'teachers',
+    component: Teachers,
+  },
+  {
+    path: '/frontpage/contactus',
+    name: 'contactus',
+    component: ContactUs,
+  },
+
+   {
+    path: '/frontpage/enroll',
+    name: 'enroll',
+    component: StuApp,
+  },
 
   {
     path: '/',
